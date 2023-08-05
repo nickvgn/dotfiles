@@ -344,7 +344,6 @@ require("lazy").setup({
 	{
 		-- Set lualine as statusline
 		"nvim-lualine/lualine.nvim",
-		lazy = true,
 		event = "VeryLazy",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 		-- See `:help lualine.txt`
@@ -400,7 +399,7 @@ require("lazy").setup({
 
 	{
 		"JoosepAlviste/nvim-ts-context-commentstring",
-		lazy = true,
+		event = "VeryLazy",
 		ft = { "typescript", "typescriptreact", "javascript", "javascriptreact", "vue" },
 		config = function()
 			require("nvim-treesitter.configs").setup({
@@ -721,7 +720,7 @@ require("lazy").setup({
 	},
 	{
 		"nvim-treesitter/nvim-treesitter-context",
-		event = "BufEnter",
+		event = "VeryLazy",
 	},
 	{
 		"RRethy/vim-illuminate",
@@ -761,6 +760,29 @@ require("lazy").setup({
 				disable_sync_scroll = 0,
 				disable_filename = 1,
 			}
+		end,
+	},
+	{
+		"folke/twilight.nvim",
+		-- keys ={"<space>tw" },
+		event = "VeryLazy",
+		config = function()
+			require("twilight").setup({
+				dimming = {
+					alpha = 0.4, -- amount of dimming
+				},
+				context = 15, -- amount of lines we will try to show around the current line
+				-- treesitter is used to automatically expand the visible text,
+				-- but you can further control the types of nodes that should always be fully expanded
+				expand = { -- for treesitter, we we always try to expand to the top-most ancestor with these types
+					"function",
+					"method",
+					"table",
+					"if_statement",
+				},
+				exclude = {}, -- exclude these filetypes
+			})
+			vim.cmd(":Twilight")
 		end,
 	},
 }, {})

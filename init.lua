@@ -272,7 +272,7 @@ require("lazy").setup({
 				topdelete = { text = "‾" },
 				changedelete = { text = "~" },
 			},
-			current_line_blame = false, -- Toggle with `:Gitsigns toggle_current_line_blame`
+			current_line_blame = true, -- Toggle with `:Gitsigns toggle_current_line_blame`
 			current_line_blame_opts = {
 				virt_text = true,
 				virt_text_pos = "eol", -- 'eol' | 'overlay' | 'right_align'
@@ -354,7 +354,7 @@ require("lazy").setup({
 					icons_enabled = true,
 					component_separators = "|",
 					-- section_separators = { left = "", right = "" },
-					section_separators = { left = "", right = "" },
+					-- section_separators = { left = "", right = "" },
 				},
 				sections = {
 					lualine_b = {
@@ -502,13 +502,14 @@ require("lazy").setup({
 							["<C-d>"] = false,
 						},
 					},
+					-- custom ignore patterns
 					file_ignore_patterns = {
 						"node_modules",
 						".git",
 						".cache",
 						"vendor",
-						"ios",
-						"android",
+						-- "ios",
+						-- "android",
 						".yarn",
 						".bundle",
 						".DS_Store",
@@ -582,7 +583,7 @@ require("lazy").setup({
 
 			require("nvim-treesitter.configs").setup({
 				-- Add languages to be installed here that you want installed for treesitter
-				ensure_installed = { "cpp", "lua", "rust", "tsx", "typescript", "help", "vim" },
+				ensure_installed = { "cpp", "lua", "rust", "tsx", "typescript", "vim" },
 				-- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
 				auto_install = false,
 				highlight = { enable = true },
@@ -673,15 +674,12 @@ require("lazy").setup({
 				require("harpoon.mark").add_file()
 			end, { noremap = true })
 
-			-- terminal 1
-			vim.keymap.set("n", "ht", function()
+			-- terminal
+			vim.keymap.set("n", "hg", function()
 				require("harpoon.term").gotoTerminal(1)
 			end, { noremap = true })
-			-- terminal 2
-			vim.keymap.set("n", "hg", function()
-				require("harpoon.term").gotoTerminal(2)
-			end, { noremap = true })
 
+			-- buffers
 			vim.keymap.set("n", "ha", function()
 				require("harpoon.ui").nav_file(1)
 			end, { noremap = true })
@@ -690,6 +688,10 @@ require("lazy").setup({
 			end, { noremap = true })
 			vim.keymap.set("n", "hs", function()
 				require("harpoon.ui").nav_file(3)
+			end, { noremap = true })
+			-- terminal 1
+			vim.keymap.set("n", "ht", function()
+				require("harpoon.ui").nav_file(4)
 			end, { noremap = true })
 		end,
 	},
@@ -712,6 +714,9 @@ require("lazy").setup({
 				},
 				panel = { enabled = false },
 			})
+			if vim.fn.expand("$HOME") == "/Users/naluri-nick" then
+				vim.g.copilot_node_command = vim.fn.expand("$HOME") .. "/.asdf/installs/nodejs/20.5.0/bin/node"
+			end
 		end,
 	},
 	{
@@ -738,6 +743,24 @@ require("lazy").setup({
 		dependencies = { "nvim-treesitter/nvim-treesitter" },
 		config = function()
 			require("treesj").setup()
+		end,
+	},
+	{
+		"iamcco/markdown-preview.nvim",
+		dependencies = { "aklt/plantuml-syntax" },
+		ft = "markdown",
+		build = function()
+			vim.fn["mkdp#util#install"]()
+		end,
+		config = function()
+			local g = vim.g
+			g.mkdp_auto_start = 1
+			g.mkdp_auto_close = 1
+			g.mkdp_page_title = "${name}.md"
+			g.mkdp_preview_options = {
+				disable_sync_scroll = 0,
+				disable_filename = 1,
+			}
 		end,
 	},
 }, {})

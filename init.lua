@@ -24,7 +24,8 @@ require("lazy").setup({
 		priority = 1000,
 		config = function()
 			require("gruvbox").setup({
-				transparent_mode = true,
+				transparent_mode = false,
+				contrast = "hard",
 			})
 			vim.cmd("colorscheme gruvbox")
 		end,
@@ -37,12 +38,12 @@ require("lazy").setup({
 	},
 	{
 		"tpope/vim-fugitive",
-		lazy = true,
 		cmd = "Git",
-		keys = { "<leader>vf" },
+		keys = { "<leader>g" },
+		lazy = true,
 		config = function()
 			-- git keymaps
-			vim.keymap.set("n", "<leader>vf", "<cmd>Git<cr>", { noremap = true, silent = true })
+			vim.keymap.set("n", "<leader>g", "<cmd>Git<cr>", { noremap = true, silent = true })
 			-- diffget keymaps
 			vim.keymap.set("n", "<leader>da", "<cmd>diffget //2<cr>", { noremap = true, silent = true })
 			vim.keymap.set("n", "<leader>do", "<cmd>diffget //3<cr>", { noremap = true, silent = true })
@@ -84,16 +85,6 @@ require("lazy").setup({
 						border = "none", -- style of border for the fidget window
 					},
 				},
-			},
-
-			-- Additional lua configuration, makes nvim stuff amazing!
-			{
-				"folke/neodev.nvim",
-				ft = "lua",
-				config = function()
-					-- Setup neovim lua configuration
-					require("neodev").setup()
-				end,
 			},
 		},
 		config = function()
@@ -142,6 +133,7 @@ require("lazy").setup({
 			local servers = {
 				clangd = {},
 				tsserver = {},
+				graphql = {},
 				pyright = {},
 				tailwindcss = {},
 				lua_ls = {
@@ -182,6 +174,18 @@ require("lazy").setup({
 			require("lspconfig").tsserver.setup({
 				root_dir = require("lspconfig.util").root_pattern(".git"),
 			})
+			require("lspconfig").graphql.setup({
+				root_dir = require("lspconfig.util").root_pattern(".git"),
+			})
+		end,
+	},
+	-- Additional lua configuration, makes nvim stuff amazing!
+	{
+		"folke/neodev.nvim",
+		ft = "lua",
+		config = function()
+			-- Setup neovim lua configuration
+			require("neodev").setup()
 		end,
 	},
 
@@ -190,6 +194,16 @@ require("lazy").setup({
 		event = "VeryLazy",
 		config = function()
 			local null_ls_status_ok, null_ls = pcall(require, "null-ls")
+
+			local should_register_eslint_d = function(utils)
+				return utils.root_has_file({
+					".eslintrc.js",
+					".eslintrc.json",
+					".eslintrc.yml",
+					".eslintrc",
+					".eslintrc.yaml",
+				})
+			end
 
 			if null_ls_status_ok then
 				local b = null_ls.builtins
@@ -200,8 +214,12 @@ require("lazy").setup({
 						b.hover.dictionary,
 						-- Typescript
 						b.formatting.prettierd,
-						b.diagnostics.eslint_d,
-						b.code_actions.eslint_d,
+						b.diagnostics.eslint_d.with({
+							condition = should_register_eslint_d,
+						}),
+						b.code_actions.eslint_d.with({
+							condition = should_register_eslint_d,
+						}),
 					},
 				})
 			end
@@ -258,130 +276,151 @@ require("lazy").setup({
 			})
 		end,
 	},
-
+	-- {
+	--   -- Adds git releated signs to the gutter, as well as utilities for managing changes
+	--   "lewis6991/gitsigns.nvim",
+	--   event = "VeryLazy",
+	--   opts = {
+	--     -- See `:help gitsigns.txt`
+	--     signs = {
+	--       add = { text = "+" },
+	--       change = { text = "~" },
+	--       delete = { text = "_" },
+	--       topdelete = { text = "‾" },
+	--       changedelete = { text = "~" },
+	--     },
+	--     current_line_blame = true, -- Toggle with `:Gitsigns toggle_current_line_blame`
+	--     current_line_blame_opts = {
+	--       virt_text = true,
+	--       virt_text_pos = "eol", -- 'eol' | 'overlay' | 'right_align'
+	--       delay = 500,
+	--       ignore_whitespace = false,
+	--     },
+	--   },
+	--     config = function()
+	--       require("gitsigns").setup({
+	--         on_attach = function(bufnr)
+	--           local gs = package.loaded.gitsigns
+	--
+	--           local function map(mode, l, r, opts)
+	--             opts = opts or {}
+	--             opts.buffer = bufnr
+	--             vim.keymap.set(mode, l, r, opts)
+	--           end
+	--
+	--           -- Navigation
+	--           map("n", "]c", function()
+	--             if vim.wo.diff then
+	--               return "]c"
+	--             end
+	--             vim.schedule(function()
+	--               gs.next_hunk()
+	--             end)
+	--             return "<Ignore>"
+	--           end, { expr = true })
+	--
+	--           map("n", "[c", function()
+	--             if vim.wo.diff then
+	--               return "[c"
+	--             end
+	--             vim.schedule(function()
+	--               gs.prev_hunk()
+	--             end)
+	--             return "<Ignore>"
+	--           end, { expr = true })
+	--
+	--           -- Actions
+	--           map("n", "<leader>gs", gs.stage_hunk)
+	--           map("n", "<leader>gr", gs.reset_hunk)
+	--           map("v", "<leader>gs", function()
+	--             gs.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
+	--           end)
+	--           map("v", "<leader>gr", function()
+	--             gs.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
+	--           end)
+	--           map("n", "<leader>gS", gs.stage_buffer)
+	--           map("n", "<leader>gu", gs.undo_stage_hunk)
+	--           map("n", "<leader>gR", gs.reset_buffer)
+	--           map("n", "<leader>gp", gs.preview_hunk)
+	--           map("n", "<leader>gb", function()
+	--             gs.blame_line({ full = true })
+	--           end)
+	--           map("n", "<leader>tb", gs.toggle_current_line_blame)
+	--           map("n", "<leader>gd", gs.diffthis)
+	--           map("n", "<leader>gD", function()
+	--             gs.diffthis("~")
+	--           end)
+	--           map("n", "<leader>td", gs.toggle_deleted)
+	--           -- Text object
+	--           map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>")
+	--         end,
+	--       })
+	--     end,
+	--   },
+	-- {
+	--   -- Set lualine as statusline
+	--   "nvim-lualine/lualine.nvim",
+	--   event = "VeryLazy",
+	--   dependencies = { "nvim-tree/nvim-web-devicons" },
+	--   -- See `:help lualine.txt`
+	--   config = function()
+	--     require("lualine").setup({
+	--       theme = "gruvbox",
+	--       options = {
+	--         icons_enabled = true,
+	--         component_separators = "|",
+	--         -- section_separators = { left = "", right = "" },
+	--         -- section_separators = { left = "", right = "" },
+	--       },
+	--       globalstatus = false,
+	--       sections = {
+	--         lualine_a = {},
+	--         lualine_b = {
+	--           "diagnostics",
+	--         },
+	--         lualine_c = {
+	--           {
+	--             "filename",
+	--             file_status = true, -- displays file status (readonly status, modified status)
+	--             path = 1,    -- 0 = just filename, 1 = relative path, 2 = absolute path
+	--           },
+	--         },
+	--         lualine_x = {},
+	--         lualine_y = {
+	--
+	--           "diff",
+	--         },
+	--         lualine_z = { "branch" },
+	--       },
+	--     })
+	--   end,
+	-- },
 	{
-		-- Adds git releated signs to the gutter, as well as utilities for managing changes
-		"lewis6991/gitsigns.nvim",
+		"folke/flash.nvim",
 		event = "VeryLazy",
-		opts = {
-			-- See `:help gitsigns.txt`
-			signs = {
-				add = { text = "+" },
-				change = { text = "~" },
-				delete = { text = "_" },
-				topdelete = { text = "‾" },
-				changedelete = { text = "~" },
-			},
-			current_line_blame = true, -- Toggle with `:Gitsigns toggle_current_line_blame`
-			current_line_blame_opts = {
-				virt_text = true,
-				virt_text_pos = "eol", -- 'eol' | 'overlay' | 'right_align'
-				delay = 700,
-				ignore_whitespace = false,
-			},
-		},
-		config = function()
-			require("gitsigns").setup({
-				on_attach = function(bufnr)
-					local gs = package.loaded.gitsigns
-
-					local function map(mode, l, r, opts)
-						opts = opts or {}
-						opts.buffer = bufnr
-						vim.keymap.set(mode, l, r, opts)
-					end
-
-					-- Navigation
-					map("n", "]c", function()
-						if vim.wo.diff then
-							return "]c"
-						end
-						vim.schedule(function()
-							gs.next_hunk()
-						end)
-						return "<Ignore>"
-					end, { expr = true })
-
-					map("n", "[c", function()
-						if vim.wo.diff then
-							return "[c"
-						end
-						vim.schedule(function()
-							gs.prev_hunk()
-						end)
-						return "<Ignore>"
-					end, { expr = true })
-
-					-- Actions
-					map("n", "<leader>gs", gs.stage_hunk)
-					map("n", "<leader>gr", gs.reset_hunk)
-					map("v", "<leader>gs", function()
-						gs.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
-					end)
-					map("v", "<leader>gr", function()
-						gs.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
-					end)
-					map("n", "<leader>gS", gs.stage_buffer)
-					map("n", "<leader>gu", gs.undo_stage_hunk)
-					map("n", "<leader>gR", gs.reset_buffer)
-					map("n", "<leader>gp", gs.preview_hunk)
-					map("n", "<leader>gb", function()
-						gs.blame_line({ full = true })
-					end)
-					map("n", "<leader>tb", gs.toggle_current_line_blame)
-					map("n", "<leader>gd", gs.diffthis)
-					map("n", "<leader>gD", function()
-						gs.diffthis("~")
-					end)
-					map("n", "<leader>td", gs.toggle_deleted)
-					-- Text object
-					map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>")
-				end,
-			})
-		end,
+		---@type Flash.Config
+		opts = {},
+    -- stylua: ignore
+    keys = {
+      { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end,       desc = "Flash" },
+      { "S", mode = { "n", "o", "x" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
+      { "r", mode = "o",               function() require("flash").remote() end,     desc = "Remote Flash" },
+      {
+        "R",
+        mode = { "o", "x" },
+        function() require("flash").treesitter_search() end,
+        desc =
+        "Treesitter Search"
+      },
+      {
+        "<c-s>",
+        mode = { "c" },
+        function() require("flash").toggle() end,
+        desc =
+        "Toggle Flash Search"
+      },
+    },
 	},
-
-	{
-		-- Set lualine as statusline
-		"nvim-lualine/lualine.nvim",
-		event = "VeryLazy",
-		dependencies = { "nvim-tree/nvim-web-devicons" },
-		-- See `:help lualine.txt`
-		config = function()
-			require("lualine").setup({
-				options = {
-					icons_enabled = true,
-					component_separators = "|",
-					-- section_separators = { left = "", right = "" },
-					-- section_separators = { left = "", right = "" },
-				},
-				sections = {
-					lualine_b = {
-						"branch",
-						"diff",
-						"diagnostics",
-						color = nil,
-					},
-					lualine_c = {
-						{
-							"filename",
-							file_status = true, -- displays file status (readonly status, modified status)
-							path = 1, -- 0 = just filename, 1 = relative path, 2 = absolute path
-						},
-					},
-				},
-			})
-		end,
-	},
-	{
-		"ggandor/leap.nvim",
-		lazy = true,
-		keys = { "s", "S" },
-		config = function()
-			require("leap").add_default_mappings()
-		end,
-	},
-
 	-- "gc" to comment visual regions/lines
 	{
 		"numToStr/Comment.nvim",
@@ -396,7 +435,6 @@ require("lazy").setup({
 			})
 		end,
 	},
-
 	{
 		"JoosepAlviste/nvim-ts-context-commentstring",
 		event = "VeryLazy",
@@ -410,36 +448,6 @@ require("lazy").setup({
 			})
 			require("Comment").setup({
 				pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
-			})
-		end,
-	},
-
-	--       Old text                    Command         New text
-	-- --------------------------------------------------------------------------------
-	--     surr*gound_words             ysiw)           (surround_words)
-	--     *make strings               ys$"            "make strings"
-	--     [delete ar*ound me!]        ds]             delete around me!
-	--     remove <b>HTML t*ags</b>    dst             remove HTML tags
-	--     'change quot*es'            cs'"            "change quotes"
-	--     <b>or tag* types</b>        csth1<CR>       <h1>or tag types</h1>
-	--     delete(functi*on calls)     dsf             function calls
-
-	-- for adding/changing ({"<tag> arround lines, words or in visual mode
-	{
-		"kylechui/nvim-surround",
-		version = "*", -- Use for stability; omit to use `main` branch for the latest features
-		event = "VeryLazy",
-	},
-
-	{
-		"windwp/nvim-ts-autotag",
-		ft = { "html", "javascriptreact", "typescriptreact", "svelte", "vue" },
-		event = "InsertEnter",
-		config = function()
-			require("nvim-treesitter.configs").setup({
-				autotag = {
-					enable = true,
-				},
 			})
 		end,
 	},
@@ -507,7 +515,7 @@ require("lazy").setup({
 						".git",
 						".cache",
 						"vendor",
-						-- "ios",
+						"Pods",
 						-- "android",
 						".yarn",
 						".bundle",
@@ -714,24 +722,6 @@ require("lazy").setup({
 		end,
 	},
 	{
-		"nvim-treesitter/nvim-treesitter-context",
-		event = "VeryLazy",
-	},
-	{
-		"RRethy/vim-illuminate",
-		event = "VeryLazy",
-		config = function()
-			require("illuminate").configure({
-				delay = 100,
-				filetypes_denylist = {
-					"dirvish",
-					"fugitive",
-					"netrw",
-				},
-			})
-		end,
-	},
-	{
 		"Wansmer/treesj",
 		keys = { "<space>m", "<space>j", "<space>s" },
 		dependencies = { "nvim-treesitter/nvim-treesitter" },
@@ -762,15 +752,10 @@ require("lazy").setup({
 -- [[ Setting options ]]
 -- See `:help vim.o`
 --vim.keymap.set("n", "<leader>cp", "<cmd>Copilot<cr>", { noremap = true, silent = true })
-vim.keymap.set(
-	"i",
-	"<leader>ca",
-	"<cmd>lua require('copilot.suggestion').accept()<cr>",
-	{ noremap = true, silent = true }
-)
-
 vim.o.list = true
 vim.o.listchars = "trail:·,eol:↴,tab:  "
+-- show character at word wrap
+vim.o.showbreak = "↪ "
 -- Set highlight on search
 vim.o.hlsearch = false
 -- Make line numbers default
@@ -802,7 +787,7 @@ vim.o.timeoutlen = 300
 vim.o.completeopt = "menuone,noselect"
 -- NOTE: You should make sure your terminal supports this
 vim.o.termguicolors = true
-vim.opt.scrolloff = 8 -- is one of my fav
+vim.opt.scrolloff = 8
 vim.opt.sidescrolloff = 8
 -- disable swap files
 vim.opt.swapfile = false

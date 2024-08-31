@@ -1,0 +1,6 @@
+command_timeout = 800
+
+# Disable the package module, hiding it from the prompt completely
+[aws]
+disabled = false
+

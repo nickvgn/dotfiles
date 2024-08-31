@@ -1,0 +1,136 @@
+--  NOTE: Explore or search through `:help lua-guide`
+
+--  NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
+vim.g.mapleader = " "
+vim.g.maplocalleader = ","
+
+-- `:help lazy.nvim.txt` for more info
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+	vim.fn.system({
+		"git",
+		"clone",
+		"--filter=blob:none",
+		"https://github.com/folke/lazy.nvim.git",
+		"--branch=stable", -- latest stable release
+		lazypath,
+	})
+end
+vim.opt.rtp:prepend(lazypath)
+
+require("lazy").setup("plugins", {})
+
+-- [[ Setting options ]]
+-- See `:help vim.o`
+--vim.keymap.set("n", "<leader>cp", "<cmd>Copilot<cr>", { noremap = true, silent = true })
+vim.o.list = true
+-- vim.o.listchars = "trail:·,eol:¬,tab:|"
+vim.o.listchars = "trail:·,eol:¬,tab:  "
+-- show character at word wrap
+vim.o.showbreak = "↪ "
+-- Set highlight on search
+vim.o.hlsearch = true
+vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<cr>")
+-- Make line numbers default
+vim.wo.number = true
+vim.wo.relativenumber = true
+-- Enable mouse mode
+vim.o.mouse = "a"
+-- Sync clipboard between OS and Neovim.
+--  Remove this option if you want your OS clipboard to remain independent.
+--  See `:help 'clipboard'`
+vim.o.clipboard = "unnamedplus"
+-- Enable break indent
+vim.o.breakindent = true
+vim.opt.smartindent = true
+vim.opt.autoindent = true
+-- Save undo history
+vim.o.undofile = true
+-- Case insensitive searching UNLESS /C or capital in search
+vim.o.ignorecase = true
+vim.o.smartcase = true
+-- Keep signcolumn on by default
+vim.wo.signcolumn = "yes"
+vim.wo.colorcolumn = "100"
+-- Decrease update time
+vim.o.updatetime = 250
+vim.o.timeout = true
+vim.o.timeoutlen = 300
+-- Set completeopt to have a better completion experience
+vim.o.completeopt = "menuone,noselect"
+-- NOTE: You should make sure your terminal supports this
+vim.o.termguicolors = true
+vim.opt.scrolloff = 8
+vim.opt.sidescrolloff = 8
+vim.opt.inccommand = "split"
+-- disable swap files
+vim.opt.swapfile = false
+-- turn off neovim intro
+-- vim.o.shortmess = vim.o.shortmess .. "I"
+
+vim.o.termsync = false
+
+vim.opt.tabstop = 2
+vim.opt.shiftwidth = 2
+vim.opt.expandtab = true
+vim.bo.softtabstop = 2
+
+-- [[ Basic Keymaps ]]
+-- Keymaps for better default experience
+-- See `:help vim.keymap.set()`
+vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
+
+-- for switching between terminal and vim splits
+vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]], { noremap = true, silent = true })
+vim.keymap.set("n", "<Tab>", [[<C-w><C-w>]], { noremap = true, silent = true })
+
+-- Remap for dealing with word wrap
+vim.keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
+vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+
+-- Remap for saving and quiting buffers
+vim.keymap.set("n", "<Leader>w", "<cmd>w<CR>", { noremap = true })
+vim.keymap.set("n", "<Leader>wq", "<cmd>wq<CR>", { noremap = true })
+vim.keymap.set("n", "<Leader>x", "<cmd>q<CR>", { noremap = true })
+
+vim.keymap.set("n", "<space>ft", ":Explore<cr>", { noremap = true, desc = "[F]ile [T]ree" })
+
+-- Disable line number for terminal sessions in neovim
+local neovim_terminal = vim.api.nvim_create_augroup("Terminal", { clear = true })
+vim.api.nvim_create_autocmd("TermOpen", {
+	callback = function()
+		vim.api.nvim_command("setlocal nonumber norelativenumber signcolumn=no")
+	end,
+	group = neovim_terminal,
+	pattern = "*",
+})
+
+-- Open Netrw automatically when starting Neovim in a directory without a file
+-- vim.cmd("autocmd StdinReadPre * let s:std_in=1")
+-- vim.cmd('autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | :Explore | endif')
+
+-- Hide .DS_Store files in Netrw
+-- images (webp, png, jpg, jpeg, gif, bmp, tiff, svg)
+vim.g.netrw_list_hide = ".*.DS_Store"
+
+-- [[ Highlight on yank ]]
+-- See `:help vim.highlight.on_yank()`
+local highlight_group = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
+vim.api.nvim_create_autocmd("TextYankPost", {
+	callback = function()
+		vim.highlight.on_yank()
+	end,
+	group = highlight_group,
+	pattern = "*",
+})
+
+-- Diagnostic keymaps
+vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic message" })
+vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next diagnostic message" })
+vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Open floating diagnostic message" })
+vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostics list" })
+vim.keymap.set("n", "]q", "<cmd>cnext<cr>", { noremap = true, silent = true })
+vim.keymap.set("n", "[q", "<cmd>cprev<cr>", { noremap = true, silent = true })
+
+-- The line beneath this is called `modeline`. See `:help modeline`
+-- vim: ts=2 sts=2 sw=2 et

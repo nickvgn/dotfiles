@@ -1,0 +1,1 @@
+/Users/nickvegean/.asdf/completions/asdf.fish

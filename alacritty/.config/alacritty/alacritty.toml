@@ -1,0 +1,52 @@
+import = ["/Users/nickvegean/.config/alacritty/themes/gruvbox-dark-hard.toml"]
+
+[env]
+term = "xterm-256color"
+
+[colors]
+draw_bold_text_with_bright_colors = true
+
+[font]
+size = 15
+
+[font.bold]
+family = "ZedMono Nerd Font Mono"
+style = "Extended Bold"
+
+[font.bold_italic]
+family = "ZedMono Nerd Font Mono"
+style = "Extended Bold Italic"
+
+[font.italic]
+family = "ZedMono Nerd Font Mono"
+style = "Extended Italic"
+
+[font.normal]
+family = "ZedMono Nerd Font Mono"
+style = "Extended"
+
+[scrolling]
+multiplier = 10
+
+[shell]
+args = ["--login"]
+program = "/opt/homebrew/bin/fish"
+
+[window]
+decorations = "buttonless"
+opacity = 0.85
+blur = true
+option_as_alt = "Both"
+
+[window.dimensions]
+columns = 196
+lines = 74
+
+# [window.padding]
+# x = 0
+# y = 0
+#
+[window.position]
+x = 800
+y = 74
+

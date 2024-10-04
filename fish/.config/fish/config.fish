@@ -1,6 +1,5 @@
 # if status is-interactive
 # end
-
 set -g theme_powerline_fonts yes
 set -g theme_nerd_fonts yes
 
@@ -19,7 +18,7 @@ set -gx PATH "/opt/homebrew/Cellar/llvm/17.0.6_1/bin" $PATH;
 # go
 set -gx PATH $HOME/go/bin $PATH;
 # psql
-set -gx PATH /opt/homebrew/opt/postgresql@16/bin $PATH
+set -gx PATH /opt/homebrew/opt/postgresql@17/bin $PATH
 # protoc
 set -x PROTOC /opt/homebrew/bin/protoc
 
@@ -53,8 +52,6 @@ set --export PATH $BUN_INSTALL/bin $PATH
 
 
 set --export BAT_THEME "gruvbox-dark"
-
-source ~/.asdf/asdf.fish
 
 # Set up fzf key bindings
 fzf --fish | source

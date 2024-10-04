@@ -1,4 +1,4 @@
-import = ["/Users/nickvegean/.config/alacritty/themes/gruvbox-dark-hard.toml"]
+import = ["~/.config/alacritty/themes/everforest.toml"]
 
 [env]
 term = "xterm-256color"
@@ -34,13 +34,13 @@ program = "/opt/homebrew/bin/fish"
 
 [window]
 decorations = "buttonless"
-opacity = 0.85
+opacity = 0.95
 blur = true
 option_as_alt = "Both"
 
 [window.dimensions]
 columns = 196
-lines = 74
+lines = 80
 
 # [window.padding]
 # x = 0

@@ -119,6 +119,14 @@ return {
 						luasnip.lsp_expand(args.body)
 					end,
 				},
+				formatting = {
+					format = function(_, vim_item)
+						-- Customize the menu (third column)
+						vim_item.menu = nil -- or you can set it to an empty string ''
+
+						return vim_item
+					end,
+				},
 				mapping = cmp.mapping.preset.insert({
 					["<C-d>"] = cmp.mapping.scroll_docs(-4),
 					["<C-f>"] = cmp.mapping.scroll_docs(4),
@@ -585,6 +593,20 @@ return {
 		},
 	},
 	-- Experimental stuff
+	{
+		"folke/flash.nvim",
+		event = "VeryLazy",
+		---@type Flash.Config
+		opts = {},
+		-- stylua: ignore
+		keys = {
+			{ "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
+			{ "S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
+			{ "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
+			{ "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
+			{ "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
+		},
+	},
 	-- {
 	-- 	"folke/todo-comments.nvim",
 	-- 	event = "VeryLazy",

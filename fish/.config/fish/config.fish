@@ -1,3 +1,7 @@
+# Ghostty shell integration for Bash. This must be at the top of your bashrc!
+if test -n "$GHOSTTY_RESOURCES_DIR"
+    source $GHOSTTY_RESOURCES_DIR/shell-integration/fish/vendor_conf.d/ghostty-shell-integration.fish
+end
 # if status is-interactive
 # end
 set -g theme_powerline_fonts yes

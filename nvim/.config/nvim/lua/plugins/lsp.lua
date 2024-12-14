@@ -98,6 +98,28 @@ return {
 			},
 			tsserver = {},
 			biome = {},
+			ruff = {
+				init_options = {
+					settings = {
+						-- Any extra CLI arguments for `ruff` go here.
+						args = {},
+					},
+				},
+			},
+			pyright = {
+				settings = {
+					pyright = {
+						-- Using Ruff's import organizer
+						disableOrganizeImports = true,
+					},
+					python = {
+						analysis = {
+							-- Ignore all files for analysis to exclusively use Ruff for linting
+							ignore = { "*" },
+						},
+					},
+				},
+			},
 			graphql = {},
 			-- pyright = {},
 			-- tailwindcss = {},
@@ -144,6 +166,10 @@ return {
 						server.on_attach = function(client)
 							client.server_capabilities.documentFormattingProvider = false
 							client.server_capabilities.documentRangeFormattingProvider = false
+							if client.name == "ruff_lsp" then
+								-- Disable hover in favor of Pyright
+								client.server_capabilities.hoverProvider = false
+							end
 						end
 					end
 					server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})

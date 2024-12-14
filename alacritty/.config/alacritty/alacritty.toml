@@ -1,4 +1,4 @@
-import = ["~/.config/alacritty/themes/everforest.toml"]
+import = ["~/.config/alacritty/themes/gruvbox-dark-hard.toml"]
 
 [env]
 term = "xterm-256color"
@@ -33,9 +33,10 @@ args = ["--login"]
 program = "/opt/homebrew/bin/fish"
 
 [window]
-decorations = "buttonless"
+decorations = "Buttonless"
 opacity = 0.95
 blur = true
+startup_mode = "Fullscreen" # "Windowed" | "Maximized" | "Fullscreen" | "SimpleFullscreen"
 option_as_alt = "Both"
 
 [window.dimensions]

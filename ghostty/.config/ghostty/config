@@ -1,0 +1,41 @@
+theme = catppuccin-mocha
+
+font-size = 14
+font-thicken = true
+
+font-family = ZedMono Nerd Font Mono
+font-style = Extended
+font-family-bold = ZedMono Nerd Font Mono
+font-style-bold = Extended Bold
+font-family-italic = ZedMono Nerd Font Mono
+font-style-italic = Extended Italic
+font-family-bold-italic = ZedMono Nerd Font Mono
+font-style-bold-italic = Extended Bold Italic
+
+macos-titlebar-style = tabs
+macos-option-as-alt = true
+
+copy-on-select = true
+
+fullscreen = false
+
+shell-integration = fish
+shell-integration-features = no-cursor,sudo,title
+
+cursor-style = block
+cursor-opacity = 0.9
+
+mouse-hide-while-typing = true
+
+background-opacity = 0.9
+background-blur-radius = 20
+
+window-padding-x = 0
+window-title-font-family = ZedMono Nerd Font Mono
+# window-step-resize = true
+window-height = 45
+window-width = 150
+
+resize-overlay = never
+
+confirm-close-surface = false

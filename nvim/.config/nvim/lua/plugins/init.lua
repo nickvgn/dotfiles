@@ -423,6 +423,7 @@ return {
 	{
 		"mrcjkb/rustaceanvim",
 		version = "^4", -- Recommended
+		filetypes = { "rust" },
 		lazy = false, -- This plugin is already lazy
 	},
 	{
@@ -552,7 +553,8 @@ return {
 	},
 	{ -- Autoformat
 		"stevearc/conform.nvim",
-		lazy = false,
+		event = { "BufWritePre" },
+		cmd = { "ConformInfo" },
 		keys = {
 			{
 				"<leader>f",
@@ -563,6 +565,9 @@ return {
 				desc = "[F]ormat buffer",
 			},
 		},
+		-- This will provide type hinting with LuaLS
+		---@module "conform"
+		---@type conform.setupOpts
 		opts = {
 			notify_on_error = false,
 			-- format_on_save = function(bufnr)
@@ -582,7 +587,14 @@ return {
 				lua = { "stylua" },
 				go = { "gofmt" },
 				-- Conform can also run multiple formatters sequentially
-				-- python = { "isort", "black" },
+				python = {
+					-- To fix auto-fixable lint errors.
+					"ruff_fix",
+					-- To run the Ruff formatter.
+					"ruff_format",
+					-- To organize the imports.
+					"ruff_organize_imports",
+				},
 				--
 				-- You can use a sub-list to tell conform to run *until* a formatter
 				-- is found.

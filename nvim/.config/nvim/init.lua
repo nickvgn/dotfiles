@@ -75,6 +75,9 @@ vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
 vim.bo.softtabstop = 2
 
+vim.opt.pumblend = 0 -- for cmp menu
+vim.opt.winblend = 0 -- for documentation popup
+
 -- [[ Basic Keymaps ]]
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`

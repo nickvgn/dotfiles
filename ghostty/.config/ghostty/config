@@ -1,4 +1,4 @@
-theme = catppuccin-mocha
+theme = Everforest Dark - Hard
 
 font-size = 14
 font-thicken = true
@@ -27,15 +27,21 @@ cursor-opacity = 0.9
 
 mouse-hide-while-typing = true
 
-background-opacity = 0.9
+background-opacity = 1
 background-blur-radius = 20
 
 window-padding-x = 0
+window-padding-y = 0
 window-title-font-family = ZedMono Nerd Font Mono
-# window-step-resize = true
-window-height = 45
-window-width = 150
+window-step-resize = true
+window-height = 50
+window-width = 250
 
 resize-overlay = never
 
 confirm-close-surface = false
+
+keybind = super+ctrl+down=resize_split:down,20
+keybind = super+ctrl+left=resize_split:left,20
+keybind = super+ctrl+up=resize_split:up,20
+keybind = super+ctrl+right=resize_split:right,20

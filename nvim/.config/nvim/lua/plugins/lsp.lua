@@ -122,7 +122,23 @@ return {
 			},
 			graphql = {},
 			-- pyright = {},
-			-- tailwindcss = {},
+			tailwindcss = {
+				settings = {
+					tailwindCSS = {
+						classAttributes = { "class", "className", "class:list", "classList", "ngClass" },
+						experimental = {
+							classRegex = { { 'class[:]\\s*"([^"]*)"', 1 }, { '~H"([^"]*)"', 1 } },
+						},
+						includeLanguages = {
+							eelixir = "html-eex",
+							elixir = "html-eex",
+							heex = "html-eex",
+							html_eex = "html-eex",
+							templ = "html",
+						},
+					},
+				},
+			},
 			lua_ls = {
 				settings = {
 					Lua = {
@@ -172,7 +188,7 @@ return {
 							end
 						end
 					end
-				  server.capabilities = require('blink.cmp').get_lsp_capabilities()
+					server.capabilities = require("blink.cmp").get_lsp_capabilities()
 					require("lspconfig")[server_name].setup(server)
 				end,
 			},

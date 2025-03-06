@@ -28,64 +28,85 @@ return {
 		end,
 	},
 
-	{
-		"nvimtools/none-ls.nvim",
-		event = "VeryLazy",
-		config = function()
-			local null_ls_status_ok, null_ls = pcall(require, "null-ls")
+	-- {
+	-- 	"mfussenegger/nvim-lint",
+	-- 	event = "VeryLazy",
+	-- 	config = function()
+	-- 		vim.env.ESLINT_D_PPID = vim.fn.getpid()
+	-- 		require("lint").linters_by_ft = {
+	-- 			javascript = { "eslint_d" },
+	-- 			typescript = { "eslint_d" },
+	-- 			typescriptreact = { "eslint_d" },
+	-- 			javascriptreact = { "eslint_d" },
+	-- 		}
+	-- 		vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+	-- 			callback = function()
+	-- 				-- try_lint without arguments runs the linters defined in `linters_by_ft`
+	-- 				-- for the current filetype
+	-- 				require("lint").try_lint()
+	-- 			end,
+	-- 		})
+	-- 	end,
+	-- },
 
-			-- local should_register_eslint_d = function(utils)
-			-- 	return utils.root_has_file({
-			-- 		".eslintrc.js",
-			-- 		".eslintrc.json",
-			-- 		".eslintrc.yml",
-			-- 		".eslintrc",
-			-- 		".eslintrc.yaml",
-			-- 	}) and not utils.root_has_file({ "biome.json" })
-			-- end
-
-			local should_register_prettierd = function(utils)
-				return not utils.root_has_file({ "biome.json" })
-			end
-
-			if null_ls_status_ok then
-				local b = null_ls.builtins
-
-				null_ls.setup({
-					sources = {
-						-- b.formatting.stylua,
-						-- b.hover.dictionary,
-						-- -- Go
-						-- b.formatting.gofmt,
-						-- Typescript
-						-- b.formatting.biome.with({
-						-- 	args = {
-						-- 		"check",
-						-- 		"--apply-unsafe",
-						-- 		"--formatter-enabled=true",
-						-- 		"--organize-imports-enabled=true",
-						-- 		"--skip-errors",
-						-- 		"$FILENAME",
-						-- 	},
-						-- 	condition = function(utils)
-						-- 		return utils.root_has_file({ "biome.json" })
-						-- 	end,
-						-- }),
-						-- b.formatting.prettierd.with({
-						-- 	condition = should_register_prettierd,
-						-- }),
-						-- b.formatting.clang_format,
-						-- b.diagnostics.eslint_d.with({
-						-- 	condition = should_register_eslint_d,
-						-- }),
-						-- b.code_actions.eslint_d.with({
-						-- 	condition = should_register_eslint_d,
-						-- }),
-					},
-				})
-			end
-		end,
-	},
+	-- {
+	-- 	"nvimtools/none-ls.nvim",
+	-- 	event = "VeryLazy",
+	-- 	config = function()
+	-- 		local null_ls_status_ok, null_ls = pcall(require, "null-ls")
+	--
+	-- 		-- local should_register_eslint_d = function(utils)
+	-- 		-- 	return utils.root_has_file({
+	-- 		-- 		".eslintrc.js",
+	-- 		-- 		".eslintrc.json",
+	-- 		-- 		".eslintrc.yml",
+	-- 		-- 		".eslintrc",
+	-- 		-- 		".eslintrc.yaml",
+	-- 		-- 	}) and not utils.root_has_file({ "biome.json" })
+	-- 		-- end
+	--
+	-- 		local should_register_prettierd = function(utils)
+	-- 			return not utils.root_has_file({ "biome.json" })
+	-- 		end
+	--
+	-- 		if null_ls_status_ok then
+	-- 			local b = null_ls.builtins
+	--
+	-- 			null_ls.setup({
+	-- 				sources = {
+	-- 					-- b.formatting.stylua,
+	-- 					-- b.hover.dictionary,
+	-- 					-- -- Go
+	-- 					-- b.formatting.gofmt,
+	-- 					-- Typescript
+	-- 					-- b.formatting.biome.with({
+	-- 					-- 	args = {
+	-- 					-- 		"check",
+	-- 					-- 		"--apply-unsafe",
+	-- 					-- 		"--formatter-enabled=true",
+	-- 					-- 		"--organize-imports-enabled=true",
+	-- 					-- 		"--skip-errors",
+	-- 					-- 		"$FILENAME",
+	-- 					-- 	},
+	-- 					-- 	condition = function(utils)
+	-- 					-- 		return utils.root_has_file({ "biome.json" })
+	-- 					-- 	end,
+	-- 					-- }),
+	-- 					-- b.formatting.prettierd.with({
+	-- 					-- 	condition = should_register_prettierd,
+	-- 					-- }),
+	-- 					-- b.formatting.clang_format,
+	-- 					-- b.diagnostics.eslint_d.with({
+	-- 					-- 	condition = should_register_eslint_d,
+	-- 					-- }),
+	-- 					-- b.code_actions.eslint_d.with({
+	-- 					-- 	condition = should_register_eslint_d,
+	-- 					-- }),
+	-- 				},
+	-- 			})
+	-- 		end
+	-- 	end,
+	-- },
 
 	{
 		-- Adds git releated signs to the gutter, as well as utilities for managing changes
@@ -309,6 +330,14 @@ return {
 					vim.o.filetype = "sh"
 				end,
 			})
+			vim.api.nvim_create_autocmd("bufenter", {
+				pattern = {
+					"*.code-snippets",
+				},
+				callback = function()
+					vim.o.filetype = "jsonc"
+				end,
+			})
 
 			-- Hurl
 			local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
@@ -368,8 +397,9 @@ return {
 				elixirls = {
 					enable = true,
 					settings = elixirls.settings({
-						dialyzerEnabled = false,
-						enableTestLenses = false,
+						dialyzerEnabled = true,
+						fetchDeps = true,
+						enableTestLenses = true,
 					}),
 					on_attach = function(client, bufnr)
 						vim.keymap.set("n", "<space>fp", ":ElixirFromPipe<cr>", { buffer = true, noremap = true })
@@ -430,31 +460,31 @@ return {
 			end)
 		end,
 	},
-	{
-		"zbirenbaum/copilot.lua",
-		event = "InsertEnter",
-		config = function()
-			require("copilot").setup({
-				filetypes = {
-					-- disable for cpp cause you're learning you bitch
-					cpp = false,
-				},
-				suggestion = {
-					enabled = true,
-					auto_trigger = true,
-					debounce = 50,
-					keymap = {
-						accept = "<tab>",
-						accept_word = false,
-						accept_line = false,
-						next = "<M-]>",
-						prev = "<M-[>",
-					},
-				},
-				panel = { enabled = false },
-			})
-		end,
-	},
+	-- {
+	-- 	"zbirenbaum/copilot.lua",
+	-- 	event = "InsertEnter",
+	-- 	config = function()
+	-- 		require("copilot").setup({
+	-- 			filetypes = {
+	-- 				-- disable for cpp cause you're learning you bitch
+	-- 				cpp = false,
+	-- 			},
+	-- 			suggestion = {
+	-- 				enabled = true,
+	-- 				auto_trigger = true,
+	-- 				debounce = 50,
+	-- 				keymap = {
+	-- 					accept = "<tab>",
+	-- 					accept_word = false,
+	-- 					accept_line = false,
+	-- 					next = "<M-]>",
+	-- 					prev = "<M-[>",
+	-- 				},
+	-- 			},
+	-- 			panel = { enabled = false },
+	-- 		})
+	-- 	end,
+	-- },
 	{
 		"Wansmer/treesj",
 		keys = { "<space>m", "<space>j", "<space>s" },
@@ -528,12 +558,13 @@ return {
 				--
 				-- You can use a sub-list to tell conform to run *until* a formatter
 				-- is found.
-				javascript = { "biome" },
-				javascriptreact = { "biome" },
-				typescript = { "biome" },
-				typescriptreact = { "biome" },
-				json = { "biome" },
-				jsonc = { "biome" },
+				javascript = { "biome", "prettierd" },
+				javascriptreact = { "biome", "prettierd" },
+				typescript = { "biome", "prettierd" },
+				typescriptreact = { "biome", "prettierd" },
+				json = { "biome", "prettierd" },
+				jsonc = { "biome", "prettierd" },
+				elixir = { "mix_format" },
 			},
 			-- Set this to change the default values when calling conform.format()
 			-- This will also affect the default values for format_on_save/format_after_save
@@ -589,4 +620,35 @@ return {
 	-- 	},
 	-- },
 	-- { "eandrju/cellular-automaton.nvim" },
+	--
+	{
+		"epwalsh/obsidian.nvim",
+		version = "*", -- recommended, use latest release instead of latest commit
+		lazy = true,
+		-- ft = "markdown",
+		-- Replace the above line with this if you only want to load obsidian.nvim for markdown files in your vault:
+		event = {
+			-- If you want to use the home shortcut '~' here you need to call 'vim.fn.expand'.
+			-- refer to `:h file-pattern` for more examples
+			"BufReadPre "
+				.. vim.fn.expand("~")
+				.. "/Documents/vaults/naluri/",
+			"BufNewFile " .. vim.fn.expand("~") .. "/Documents/vaults/naluri/",
+		},
+		dependencies = {
+			-- Required.
+			"nvim-lua/plenary.nvim",
+			-- see below for full list of optional dependencies 👇
+		},
+		opts = {
+			workspaces = {
+				{
+					name = "work",
+					path = "~/Documents/vaults/naluri/",
+				},
+			},
+
+			-- see below for full list of options 👇
+		},
+	},
 }

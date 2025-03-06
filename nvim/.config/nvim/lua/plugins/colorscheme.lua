@@ -34,21 +34,19 @@ return {
 	-- 		vim.cmd.colorscheme("catppuccin")
 	-- 	end,
 	-- },
-	-- {
-	-- 	"ellisonleao/gruvbox.nvim",
-	-- 	priority = 1000,
-	-- 	config = function()
-	-- 		require("gruvbox").setup({
-	-- 			transparent_mode = true,
-	-- 			contrast = "hard",
-	-- 		})
-	-- 		vim.cmd("colorscheme gruvbox")
-	-- 		-- temporary workaround for nvim 0.10.0
-	-- 		--https://github.com/ellisonleao/gruvbox.nvim/issues/335
-	-- 		-- vim.api.nvim_set_hl(0, "Delimiter", { link = "GruvboxOrange" })
-	-- 	end,
-	-- },
- -- ayu
+	{
+		"ellisonleao/gruvbox.nvim",
+		lazy = false,
+		priority = 1000,
+		config = function()
+			require("gruvbox").setup({
+				transparent_mode = true,
+				contrast = "hard",
+			})
+			vim.cmd("colorscheme gruvbox")
+		end,
+	},
+	-- ayu
 	-- {
 	-- 	"ayu-theme/ayu-vim",
 	-- 	priority = 1000,
@@ -57,23 +55,59 @@ return {
 	-- 		vim.cmd("colorscheme ayu")
 	-- 	end,
 	-- }
-	{ "sainnhe/everforest",
-		priority = 1000,
-		config = function()
-			vim.g.everforest_background = "hard"
-			vim.g.everforest_ui_contrast = "high"
-			vim.g.everforest_better_performance = 1
-			vim.g.everforest_enable_italic = 1
-			vim.g.everforest_transparent_background = 1
-			vim.g.everforest_dim_inactive_windows = 1
-			-- vim.g.everforest_diagnostic_text_highlight = 1
-			-- vim.g.everforest_diagnostic_line_highlight = 1
-			vim.g.everforest_diagnostic_virtual_text = "colored"
-			vim.g.everforest_disable_terminal_colors = 1
-			vim.cmd("colorscheme everforest")
-
-			vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
-      vim.api.nvim_set_hl(0, "floatBorder", { bg = "none" })
-		end,
-	},
+	-- {
+	-- 	"sainnhe/everforest",
+	-- 	priority = 1000,
+	-- 	config = function()
+	-- 		vim.g.everforest_background = "hard"
+	-- 		vim.g.everforest_ui_contrast = "high"
+	-- 		vim.g.everforest_better_performance = 1
+	-- 		vim.g.everforest_enable_italic = 1
+	-- 		vim.g.everforest_transparent_background = 1
+	-- 		vim.g.everforest_dim_inactive_windows = 1
+	-- 		-- vim.g.everforest_diagnostic_text_highlight = 1
+	-- 		-- vim.g.everforest_diagnostic_line_highlight = 1
+	-- 		vim.g.everforest_diagnostic_virtual_text = "colored"
+	-- 		vim.g.everforest_disable_terminal_colors = 1
+	-- 		vim.cmd("colorscheme everforest")
+	--
+	-- 		vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+	-- 		vim.api.nvim_set_hl(0, "floatBorder", { bg = "none" })
+	-- 	end,
+	-- },
+	-- {
+	-- 	"neanias/everforest-nvim",
+	-- 	version = false,
+	-- 	lazy = false,
+	-- 	priority = 1000, -- make sure to load this before all the other start plugins
+	-- 	-- Optional; default configuration will be used if setup isn't called.
+	-- 	config = function()
+	-- 		require("everforest").setup({
+	-- 			-- Your config here
+	-- 			background = "hard",
+	-- 			transparent_background_level = 1,
+	-- 			italics = true,
+	-- 			disable_italic_comments = true,
+	-- 			on_highlights = function(hl, _)
+	-- 				hl["@string.special.symbol.ruby"] = { link = "@field" }
+	-- 			end,
+	-- 		})
+	-- 		vim.cmd("colorscheme everforest")
+	-- 	end,
+	-- },
+	-- {
+	-- 	"RRethy/base16-nvim",
+	-- 	priority = 1000,
+	-- 	config = function()
+	-- 		vim.cmd.colorscheme("base16-tomorrow-night")
+	-- 	end,
+	-- },
+	-- {
+	-- 	"tinted-theming/tinted-vim",
+	-- 	priority = 1000,
+	-- 	config = function()
+	-- 		vim.g.tinted_background_transparent = 1
+	-- 		vim.cmd.colorscheme("base16-chalk")
+	-- 	end,
+	-- },
 }

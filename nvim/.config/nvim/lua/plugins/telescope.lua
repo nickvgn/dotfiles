@@ -62,12 +62,12 @@ return {
 						".bundle",
 						".DS_Store",
 						-- all images
-						".png",
-						".jpg",
-						".jpeg",
-						".gif",
-						".webp",
-						".svg",
+						-- ".png",
+						-- ".jpg",
+						-- ".jpeg",
+						-- ".gif",
+						-- ".webp",
+						-- ".svg",
 						-- fonts
 						".ttf",
 						".otf",

@@ -3,9 +3,8 @@ return {
 		"saghen/blink.cmp",
 		-- optional: provides snippets for the snippet source
 		dependencies = "rafamadriz/friendly-snippets",
-
 		-- use a release tag to download pre-built binaries
-		version = "v0.*",
+		version = "*",
 		-- AND/OR build from source, requires nightly: https://rust-lang.github.io/rustup/concepts/channels.html#working-with-nightly-rust
 		-- build = 'cargo build --release',
 		-- If you use nix, you can build from source using latest nightly rust with:
@@ -35,12 +34,34 @@ return {
 			-- elsewhere in your config, without redefining it, via `opts_extend`
 			sources = {
 				default = { "lsp", "path", "snippets", "buffer" },
+				-- providers = {
+				-- 	snippets = {
+				-- 		opts = {
+				-- 			search_paths = { vim.fn.getcwd() .. "/.vscode" },
+				-- 		},
+				-- 	},
+				-- },
 				-- optionally disable cmdline completions
 				-- cmdline = {},
 			},
 
 			-- experimental signature help support
-			signature = { enabled = true }
+			signature = { enabled = true },
+		},
+		completion = {
+			documentation = { auto_show = true, auto_show_delay_ms = 500 },
+			menu = {
+				-- Don't automatically show the completion menu
+				auto_show = true,
+
+				-- nvim-cmp style menu
+				draw = {
+					columns = {
+						{ "label", "label_description", gap = 1 },
+						{ "kind_icon", "kind" },
+					},
+				},
+			},
 		},
 		-- allows extending the providers array elsewhere in your config
 		-- without having to redefine it

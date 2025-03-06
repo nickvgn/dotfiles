@@ -161,6 +161,7 @@ local function remove_quickfix_item()
 end
 
 vim.keymap.set("n", "<leader>dq", remove_quickfix_item, { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>cl", vim.lsp.codelens.run, { noremap = true, silent = true })
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

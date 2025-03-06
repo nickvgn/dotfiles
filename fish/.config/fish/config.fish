@@ -34,12 +34,15 @@ alias ll="exa -la --icons"
 alias ..="cd ../"
 alias ...="cd ../../"
 # nvim
-alias vi="arch -arm64 nvim"
+alias vi="nvim"
 # git
 alias glog="git log --all --pretty='format:%d %Cgreen%h%Creset %an - %s' --graph"
 # gnu
 alias xargs="gxargs"
 alias find="gfind"
+
+# naluri db script
+alias aws="sh ~/dev/naluri/ops-utility-script/scripts/configure_aws.sh"
 
 # https://github.com/MordechaiHadad/bob
  set PATH "$HOME/.local/share/bob/nvim-bin" $PATH;

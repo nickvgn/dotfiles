@@ -386,6 +386,7 @@ return {
 	},
 	{
 		"elixir-tools/elixir-tools.nvim",
+		filetypes = { "elixir" },
 		version = "*",
 		event = { "BufReadPre", "BufNewFile" },
 		config = function()

@@ -4,9 +4,9 @@ return {
 	event = "VeryLazy",
 	dependencies = {
 		-- Automatically install LSPs to stdpath for neovim
-		"williamboman/mason.nvim",
-		"williamboman/mason-lspconfig.nvim",
-		"WhoIsSethDaniel/mason-tool-installer.nvim",
+		{ "williamboman/mason.nvim", lazy = true },
+		{ "williamboman/mason-lspconfig.nvim", lazy = true },
+		{ "WhoIsSethDaniel/mason-tool-installer.nvim", lazy = true },
 
 		-- Useful status updates for LSP
 		-- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`

@@ -252,7 +252,6 @@ return {
 			require("nvim-treesitter.configs").setup({
 				-- add languages to be installed here that you want installed for treesitter
 				ensure_installed = { "cpp", "lua", "rust", "tsx", "typescript", "vim" },
-				-- autoinstall languages that are not installed. defaults to false (but you can change for yourself!)
 				auto_install = false,
 				highlight = { enable = true },
 				indent = { enable = true },
@@ -386,7 +385,7 @@ return {
 	},
 	{
 		"elixir-tools/elixir-tools.nvim",
-		filetypes = { "elixir" },
+		ft = { "elixir" },
 		version = "*",
 		event = { "BufReadPre", "BufNewFile" },
 		config = function()
@@ -496,6 +495,7 @@ return {
 	},
 	{
 		"iamcco/markdown-preview.nvim",
+		cond = false,
 		dependencies = { "aklt/plantuml-syntax" },
 		ft = "markdown",
 		build = function()
@@ -541,6 +541,7 @@ return {
 	--
 	{
 		"epwalsh/obsidian.nvim",
+		cond = false,
 		version = "*", -- recommended, use latest release instead of latest commit
 		lazy = true,
 		-- ft = "markdown",

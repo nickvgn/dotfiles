@@ -18,7 +18,33 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require("lazy").setup("plugins", {})
+require("lazy").setup("plugins", {
+	install = { colorscheme = { "gruvbox" } },
+	checker = { enabled = true },
+	performance = {
+		rtp = {
+			disabled_plugins = {
+				"gzip",
+				"matchit",
+				"matchparen",
+				"tarPlugin",
+				"tohtml",
+				"tutor",
+				"zipPlugin",
+				"2html_plugin",
+				"remote_plugins",
+				"shada_plugin",
+				"spellfile_plugin",
+				"man",
+				-- Keep netrw and related plugins enabled
+				-- "netrw",
+				-- "netrwPlugin",
+				-- "netrwSettings",
+				-- "netrwFileHandlers",
+			},
+		},
+	},
+})
 
 -- [[ Setting options ]]
 -- See `:help vim.o`

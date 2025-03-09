@@ -18,6 +18,8 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+vim.loader.enable({ enable = true })
+
 require("lazy").setup("plugins", {
 	install = { colorscheme = { "gruvbox" } },
 	checker = { enabled = true },
@@ -65,7 +67,9 @@ vim.o.mouse = "a"
 -- Sync clipboard between OS and Neovim.
 --  Remove this option if you want your OS clipboard to remain independent.
 --  See `:help 'clipboard'`
-vim.o.clipboard = "unnamedplus"
+vim.opt.clipboard = "unnamedplus"
+-- vim.g.clipboard = { name = "pbcoby", cache_enabled = true }
+--     ↑ clipboard provider
 -- Enable break indent
 vim.o.breakindent = true
 vim.opt.smartindent = true
@@ -103,6 +107,11 @@ vim.bo.softtabstop = 2
 
 vim.opt.pumblend = 0 -- for cmp menu
 vim.opt.winblend = 0 -- for documentation popup
+
+vim.g.loaded_node_provider = 0
+vim.g.loaded_perl_provider = 0
+vim.g.loaded_python_provider = 0
+vim.g.loaded_ruby_provider = 0
 
 -- [[ Basic Keymaps ]]
 -- Keymaps for better default experience

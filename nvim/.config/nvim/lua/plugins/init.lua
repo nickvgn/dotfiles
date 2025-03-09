@@ -380,8 +380,7 @@ return {
 	{
 		"mrcjkb/rustaceanvim",
 		version = "^4", -- Recommended
-		filetypes = { "rust" },
-		lazy = false, -- This plugin is already lazy
+		ft = { "rust" },
 	},
 	{
 		"elixir-tools/elixir-tools.nvim",

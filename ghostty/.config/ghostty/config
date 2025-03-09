@@ -27,7 +27,7 @@ cursor-opacity = 0.9
 
 mouse-hide-while-typing = true
 
-background-opacity = 0.95
+background-opacity = 1
 background-blur-radius = 10
 
 window-padding-x = 0

@@ -57,8 +57,9 @@ starship init fish | source
 set --export BUN_INSTALL "$HOME/.bun"
 set --export PATH $BUN_INSTALL/bin $PATH
 
-
 set --export BAT_THEME "gruvbox-dark"
+
+set --export FZF_DEFAULT_OPTS "--color=bg+:#3c3836,spinner:#fe8019,hl:#fe8019,fg:#ebdbb2,header:#928374,info:#8ec07c,pointer:#fe8019,marker:#fe8019,fg+:#ebdbb2,prompt:#fe8019,hl+:#fe8019"
 
 # Set up fzf key bindings
 fzf --fish | source

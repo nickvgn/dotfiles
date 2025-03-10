@@ -4,49 +4,9 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = ","
 
--- `:help lazy.nvim.txt` for more info
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
-	vim.fn.system({
-		"git",
-		"clone",
-		"--filter=blob:none",
-		"https://github.com/folke/lazy.nvim.git",
-		"--branch=stable", -- latest stable release
-		lazypath,
-	})
-end
-vim.opt.rtp:prepend(lazypath)
+require("config.lazy")
 
 vim.loader.enable({ enable = true })
-
-require("lazy").setup("plugins", {
-	install = { colorscheme = { "gruvbox" } },
-	checker = { enabled = true },
-	performance = {
-		rtp = {
-			disabled_plugins = {
-				"gzip",
-				"matchit",
-				"matchparen",
-				"tarPlugin",
-				"tohtml",
-				"tutor",
-				"zipPlugin",
-				"2html_plugin",
-				"remote_plugins",
-				"shada_plugin",
-				"spellfile_plugin",
-				"man",
-				-- Keep netrw and related plugins enabled
-				-- "netrw",
-				-- "netrwPlugin",
-				-- "netrwSettings",
-				-- "netrwFileHandlers",
-			},
-		},
-	},
-})
 
 -- [[ Setting options ]]
 -- See `:help vim.o`
@@ -132,20 +92,6 @@ vim.keymap.set("n", "<Leader>wq", "<cmd>wq<CR>", { noremap = true })
 vim.keymap.set("n", "<Leader>x", "<cmd>q<CR>", { noremap = true })
 
 vim.keymap.set("n", "<space>ft", ":Explore<cr>", { noremap = true, desc = "[F]ile [T]ree" })
-
--- Disable line number for terminal sessions in neovim
-local neovim_terminal = vim.api.nvim_create_augroup("Terminal", { clear = true })
-vim.api.nvim_create_autocmd("TermOpen", {
-	callback = function()
-		vim.api.nvim_command("setlocal nonumber norelativenumber signcolumn=no")
-	end,
-	group = neovim_terminal,
-	pattern = "*",
-})
-
--- Open Netrw automatically when starting Neovim in a directory without a file
--- vim.cmd("autocmd StdinReadPre * let s:std_in=1")
--- vim.cmd('autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | :Explore | endif')
 
 -- Hide .DS_Store files in Netrw
 -- images (webp, png, jpg, jpeg, gif, bmp, tiff, svg)

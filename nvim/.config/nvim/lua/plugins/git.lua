@@ -1,5 +1,4 @@
 return {
-
 	{
 		"NeogitOrg/neogit",
 		keys = { "<leader>g" },
@@ -12,20 +11,26 @@ return {
 			local neogit = require("neogit")
 
 			vim.keymap.set("n", "<leader>g", neogit.open, { noremap = true, silent = true })
+
+			neogit.setup({
+				disable_hint = true,
+				kind = "replace",
+			})
 		end,
 	},
-	{
-		"tpope/vim-fugitive",
-		cmd = "Git",
-		lazy = true,
-		config = function()
-			-- git keymaps
-			-- vim.keymap.set("n", "<leader>g", "<cmd>Git<cr>", { noremap = true, silent = true })
-			-- diffget keymaps
-			vim.keymap.set("n", "<leader>da", "<cmd>diffget //2<cr>", { noremap = true, silent = true })
-			vim.keymap.set("n", "<leader>do", "<cmd>diffget //3<cr>", { noremap = true, silent = true })
-		end,
-	},
+	-- {
+	-- 	"tpope/vim-fugitive",
+	-- 	cmd = "Git",
+	-- 	keys = { "<leader>g" },
+	-- 	lazy = true,
+	-- 	config = function()
+	-- 		-- git keymaps
+	-- 		vim.keymap.set("n", "<leader>g", "<cmd>Git<cr>", { noremap = true, silent = true })
+	-- 		-- diffget keymaps
+	-- 		vim.keymap.set("n", "<leader>da", "<cmd>diffget //2<cr>", { noremap = true, silent = true })
+	-- 		vim.keymap.set("n", "<leader>do", "<cmd>diffget //3<cr>", { noremap = true, silent = true })
+	-- 	end,
+	-- },
 	{
 		-- Adds git releated signs to the gutter, as well as utilities for managing changes
 		"lewis6991/gitsigns.nvim",

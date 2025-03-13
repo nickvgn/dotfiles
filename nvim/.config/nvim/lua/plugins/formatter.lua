@@ -46,12 +46,12 @@ return {
 				--
 				-- You can use a sub-list to tell conform to run *until* a formatter
 				-- is found.
-				javascript = { "biome", "prettierd" },
-				javascriptreact = { "biome", "prettierd" },
-				typescript = { "biome", "prettierd" },
-				typescriptreact = { "biome", "prettierd" },
-				json = { "biome", "prettierd" },
-				jsonc = { "biome", "prettierd" },
+				javascript = { "biome-check", "prettierd" },
+				javascriptreact = { "biome-check", "prettierd" },
+				typescript = { "biome-check", "prettierd" },
+				typescriptreact = { "biome-check", "prettierd" },
+				json = { "biome-check", "prettierd" },
+				jsonc = { "biome-check", "prettierd" },
 				elixir = { "mix_format" },
 			},
 			-- Set this to change the default values when calling conform.format()

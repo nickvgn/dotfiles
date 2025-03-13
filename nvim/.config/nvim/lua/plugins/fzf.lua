@@ -14,6 +14,7 @@ return {
 		-- dependencies = { "echasnovski/mini.icons" },
 		opts = {},
 		config = function()
+			local actions = require("fzf-lua").actions
 			require("fzf-lua").setup({
 				"max-perf",
 				fzf_colors = false, -- because we're setting it globally on fzf; see config.fish

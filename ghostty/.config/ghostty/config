@@ -30,10 +30,12 @@ mouse-hide-while-typing = true
 background-opacity = 1
 background-blur-radius = 10
 
+window-theme = dark
+
 window-padding-x = 0
 window-padding-y = 0
 window-title-font-family = ZedMono Nerd Font Mono
-window-step-resize = true
+window-step-resize = false
 window-height = 50
 window-width = 250
 

@@ -35,13 +35,13 @@ return {
 			-- elsewhere in your config, without redefining it, via `opts_extend`
 			sources = {
 				default = { "lsp", "path", "snippets", "buffer" },
-				-- providers = {
-				-- 	snippets = {
-				-- 		opts = {
-				-- 			search_paths = { vim.fn.getcwd() .. "/.vscode" },
-				-- 		},
-				-- 	},
-				-- },
+				per_filetype = {
+					sql = { "snippets", "dadbod", "buffer" },
+				},
+				-- add vim-dadbod-completion to your completion providers
+				providers = {
+					dadbod = { name = "Dadbod", module = "vim_dadbod_completion.blink" },
+				},
 				-- optionally disable cmdline completions
 				-- cmdline = {},
 			},

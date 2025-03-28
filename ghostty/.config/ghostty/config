@@ -43,7 +43,25 @@ resize-overlay = never
 
 confirm-close-surface = false
 
-keybind = super+ctrl+down=resize_split:down,20
-keybind = super+ctrl+left=resize_split:left,20
-keybind = super+ctrl+up=resize_split:up,20
-keybind = super+ctrl+right=resize_split:right,20
+keybind = super+ctrl+h=resize_split:right,100
+keybind = super+ctrl+j=resize_split:down,100
+keybind = super+ctrl+k=resize_split:up,100
+keybind = super+ctrl+l=resize_split:left,100
+
+keybind = ctrl+h=goto_split:left
+keybind = ctrl+j=goto_split:bottom
+keybind = ctrl+k=goto_split:top
+keybind = ctrl+l=goto_split:right
+
+keybind = ctrl+a>h=new_split:left
+keybind = ctrl+a>j=new_split:down
+keybind = ctrl+a>k=new_split:up
+keybind = ctrl+a>l=new_split:right
+keybind = ctrl+enter=toggle_split_zoom
+
+keybind = super+r=reload_config
+
+macos-icon = custom-style
+macos-icon-frame = beige
+macos-icon-ghost-color = #fe8019
+macos-icon-screen-color = #282828

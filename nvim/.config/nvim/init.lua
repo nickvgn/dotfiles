@@ -72,8 +72,8 @@ vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
 vim.bo.softtabstop = 2
 
-vim.opt.pumblend = 15 -- for cmp menu
-vim.opt.winblend = 15 -- for documentation popup
+vim.opt.pumblend = 0 -- for cmp menu
+vim.opt.winblend = 0 -- for documentation popup
 
 vim.g.loaded_node_provider = 0
 vim.g.loaded_perl_provider = 0

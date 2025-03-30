@@ -28,8 +28,8 @@ set -x PROTOC /opt/homebrew/bin/protoc
 
 # ALIAS
 # exa
-alias ls="exa -a --icons"
-alias ll="exa -la --icons"
+alias ls="eza -a"
+alias ll="eza -la"
 # cd
 alias ..="cd ../"
 alias ...="cd ../../"

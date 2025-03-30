@@ -36,13 +36,13 @@ return {
       -- elsewhere in your config, without redefining it, via `opts_extend`
       sources = {
         default = { "lsp", "path", "snippets", "buffer" },
-        -- per_filetype = {
-        --   sql = { "snippets", "dadbod", "buffer" },
-        -- },
+        per_filetype = {
+          sql = { "snippets", "dadbod", "buffer" },
+        },
         -- add vim-dadbod-completion to your completion providers
-        -- providers = {
-        --   dadbod = { name = "Dadbod", module = "vim_dadbod_completion.blink" },
-        -- },
+        providers = {
+          dadbod = { name = "Dadbod", module = "vim_dadbod_completion.blink" },
+        },
         -- optionally disable cmdline completions
         -- cmdline = {},
       },
@@ -75,75 +75,4 @@ return {
     -- without having to redefine it
     opts_extend = { "sources.default" },
   },
-  -- {
-  -- 	-- Autocompletion
-  -- 	"hrsh7th/nvim-cmp",
-  -- 	event = "InsertEnter",
-  -- 	dependencies = {
-  -- 		"hrsh7th/cmp-nvim-lsp",
-  -- 		"hrsh7th/cmp-nvim-lsp-signature-help",
-  -- 		"L3MON4D3/LuaSnip",
-  -- 		"saadparwaiz1/cmp_luasnip",
-  -- 	},
-  -- 	config = function()
-  -- 		-- nvim-cmp setup
-  -- 		local cmp = require("cmp")
-  -- 		local luasnip = require("luasnip")
-  --
-  -- 		require("cmp").setup({
-  -- 			sources = {
-  -- 				{ name = "nvim_lsp_signature_help" },
-  -- 			},
-  -- 		})
-  --
-  -- 		luasnip.config.setup({})
-  --
-  -- 		cmp.setup({
-  -- 			experimental = {
-  -- 				ghost_text = false,
-  -- 			},
-  -- 			snippet = {
-  -- 				expand = function(args)
-  -- 					luasnip.lsp_expand(args.body)
-  -- 				end,
-  -- 			},
-  -- 			formatting = {
-  -- 				format = function(_, vim_item)
-  -- 					-- Customize the menu (third column)
-  -- 					vim_item.menu = nil -- or you can set it to an empty string ''
-  --
-  -- 					return vim_item
-  -- 				end,
-  -- 			},
-  -- 			mapping = cmp.mapping.preset.insert({
-  -- 				["<C-d>"] = cmp.mapping.scroll_docs(-4),
-  -- 				["<C-f>"] = cmp.mapping.scroll_docs(4),
-  -- 				["<C-Space>"] = cmp.mapping.complete({}),
-  -- 				["<CR>"] = cmp.mapping.confirm({
-  -- 					behavior = cmp.ConfirmBehavior.Replace,
-  -- 					select = false,
-  -- 				}),
-  -- 				["<S-Tab>"] = cmp.mapping(function(fallback)
-  -- 					if cmp.visible() then
-  -- 						cmp.select_prev_item()
-  -- 					elseif luasnip.jumpable(-1) then
-  -- 						luasnip.jump(-1)
-  -- 					else
-  -- 						fallback()
-  -- 					end
-  -- 				end, { "i", "s" }),
-  -- 			}),
-  -- 			sources = cmp.config.sources({
-  -- 				{ name = "nvim_lsp" },
-  -- 				{ name = "luasnip" },
-  -- 			}),
-  -- 			window = {
-  -- 				documentation = cmp.config.window.bordered(),
-  -- 				completion = cmp.config.window.bordered({
-  -- 					winhighlight = "Normal:CmpPmenu,CursorLine:PmenuSel,Search:None",
-  -- 				}),
-  -- 			},
-  -- 		})
-  -- 	end,
-  -- },
 }

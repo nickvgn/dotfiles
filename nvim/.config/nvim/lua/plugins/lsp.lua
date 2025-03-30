@@ -2,17 +2,6 @@ return {
   {
     "williamboman/mason.nvim",
     event = "VeryLazy",
-    config = function()
-      require("mason").setup()
-      local nmap = function(keys, func, desc)
-        if desc then
-          desc = "LSP: " .. desc
-        end
-      end
-
-      nmap("gd", vim.lsp.buf.definition, "[G]oto [D]efinition")
-      nmap("gi", vim.lsp.buf.implementation, "[G]oto [I]mplementation")
-    end
   },
   {
     "j-hui/fidget.nvim",
@@ -34,4 +23,41 @@ return {
       },
     }
   },
+  {
+    "elixir-tools/elixir-tools.nvim",
+    ft = { "elixir" },
+    version = "*",
+    config = function()
+      local elixir = require("elixir")
+      local elixirls = require("elixir.elixirls")
+
+      elixir.setup({
+        nextls = { enable = true },
+        elixirls = {
+          enable = true,
+          settings = elixirls.settings({
+            dialyzerEnabled = true,
+            fetchDeps = true,
+            enableTestLenses = true,
+          }),
+          on_attach = function(client, bufnr)
+            vim.keymap.set("n", "<space>fp", ":ElixirFromPipe<cr>", { buffer = true, noremap = true })
+            vim.keymap.set("n", "<space>tp", ":ElixirToPipe<cr>", { buffer = true, noremap = true })
+            vim.keymap.set("v", "<space>em", ":ElixirExpandMacro<cr>", { buffer = true, noremap = true })
+          end,
+        },
+        projectionist = {
+          enable = true,
+        },
+      })
+    end,
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
+  },
+  {
+    "mrcjkb/rustaceanvim",
+    version = "^4", -- Recommended
+    ft = { "rust" },
+  }
 }

@@ -3,13 +3,13 @@ theme = GruvboxDarkHard
 font-size = 13
 font-thicken = true
 
-font-family = ZedMono Nerd Font Mono
+font-family = Zed Mono
 font-style = Extended
-font-family-bold = ZedMono Nerd Font Mono
+font-family-bold = Zed Mono
 font-style-bold = Extended Bold
-font-family-italic = ZedMono Nerd Font Mono
+font-family-italic = Zed Mono
 font-style-italic = Extended Italic
-font-family-bold-italic = ZedMono Nerd Font Mono
+font-family-bold-italic = Zed Mono
 font-style-bold-italic = Extended Bold Italic
 
 macos-titlebar-style = tabs

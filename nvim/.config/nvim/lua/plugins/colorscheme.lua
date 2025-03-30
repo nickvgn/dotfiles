@@ -1,4 +1,17 @@
 return {
+  {
+    "ellisonleao/gruvbox.nvim",
+    lazy = false,
+    priority = 1000,
+    branch = "main",
+    config = function()
+      require("gruvbox").setup({
+        transparent_mode = true,
+        contrast = "hard",
+      })
+      vim.cmd("colorscheme gruvbox")
+    end,
+  },
   -- {
   -- 	"catppuccin/nvim",
   -- 	name = "catppuccin",
@@ -34,28 +47,6 @@ return {
   -- 		vim.cmd.colorscheme("catppuccin")
   -- 	end,
   -- },
-  {
-    "ellisonleao/gruvbox.nvim",
-    lazy = false,
-    priority = 1000,
-    branch = "main",
-    config = function()
-      require("gruvbox").setup({
-        transparent_mode = true,
-        contrast = "hard",
-      })
-      vim.cmd("colorscheme gruvbox")
-    end,
-  },
-  -- ayu
-  -- {
-  -- 	"ayu-theme/ayu-vim",
-  -- 	priority = 1000,
-  -- 	config = function()
-  -- 		vim.g.ayucolor = "dark"
-  -- 		vim.cmd("colorscheme ayu")
-  -- 	end,
-  -- }
   -- {
   -- 	"sainnhe/everforest",
   -- 	priority = 1000,
@@ -74,41 +65,6 @@ return {
   --
   -- 		vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
   -- 		vim.api.nvim_set_hl(0, "floatBorder", { bg = "none" })
-  -- 	end,
-  -- },
-  -- {
-  -- 	"neanias/everforest-nvim",
-  -- 	version = false,
-  -- 	lazy = false,
-  -- 	priority = 1000, -- make sure to load this before all the other start plugins
-  -- 	-- Optional; default configuration will be used if setup isn't called.
-  -- 	config = function()
-  -- 		require("everforest").setup({
-  -- 			-- Your config here
-  -- 			background = "hard",
-  -- 			transparent_background_level = 1,
-  -- 			italics = true,
-  -- 			disable_italic_comments = true,
-  -- 			on_highlights = function(hl, _)
-  -- 				hl["@string.special.symbol.ruby"] = { link = "@field" }
-  -- 			end,
-  -- 		})
-  -- 		vim.cmd("colorscheme everforest")
-  -- 	end,
-  -- },
-  -- {
-  -- 	"RRethy/base16-nvim",
-  -- 	priority = 1000,
-  -- 	config = function()
-  -- 		vim.cmd.colorscheme("base16-tomorrow-night")
-  -- 	end,
-  -- },
-  -- {
-  -- 	"tinted-theming/tinted-vim",
-  -- 	priority = 1000,
-  -- 	config = function()
-  -- 		vim.g.tinted_background_transparent = 1
-  -- 		vim.cmd.colorscheme("base16-chalk")
   -- 	end,
   -- },
 }

@@ -71,6 +71,11 @@ return {
     end,
   },
   {
+    'windwp/nvim-autopairs',
+    event = "InsertEnter",
+    config = true
+  },
+  {
     "iamcco/markdown-preview.nvim",
     cond = false,
     dependencies = { "aklt/plantuml-syntax" },

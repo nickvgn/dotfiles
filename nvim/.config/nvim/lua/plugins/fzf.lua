@@ -9,9 +9,6 @@ return {
 			"<leader>sd",
 			"<leader>gb",
 		},
-		-- optional for icon support
-		-- or if using mini.icons/mini.nvim
-		-- dependencies = { "echasnovski/mini.icons" },
 		opts = {},
 		config = function()
 			local actions = require("fzf-lua").actions
@@ -55,27 +52,3 @@ return {
 		end,
 	},
 }
-
--- NOTE: you used to ignore these with telescope
-
--- 	"node_modules",
--- 	".git",
--- 	".cache",
--- 	"vendor",
--- 	"Pods",
--- 	-- "android",
--- 	".yarn",
--- 	".bundle",
--- 	".DS_Store",
--- 	-- all images
--- 	-- ".png",
--- 	-- ".jpg",
--- 	-- ".jpeg",
--- 	-- ".gif",
--- 	-- ".webp",
--- 	-- ".svg",
--- 	-- fonts
--- 	".ttf",
--- 	".otf",
--- 	-- bun lock file
--- 	".lockb"

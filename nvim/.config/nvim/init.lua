@@ -7,8 +7,8 @@ vim.g.have_nerd_font = false
 
 vim.loader.enable(true)
 
-require("config.lazy")
 require("config.options")
-require('config.keymaps')
-require('config.autocmd')
-require('config.lsp')
+require("config.lazy")
+require("config.keymaps")
+require("config.autocmd")
+require("config.lsp")

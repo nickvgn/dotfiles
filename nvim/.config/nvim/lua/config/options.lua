@@ -11,12 +11,12 @@ vim.wo.relativenumber = true
 -- Don't show the mode, since it's already in the status line
 vim.opt.showmode = false
 -- Enable/Disable mouse mode
-vim.o.mouse = ""
+vim.o.mouse = "a"
 -- Sync clipboard between OS and Neovim.
 --  Remove this option if you want your OS clipboard to remain independent.
 --  See `:help 'clipboard'`
 vim.schedule(function()
-  vim.opt.clipboard = 'unnamedplus'
+	vim.opt.clipboard = "unnamedplus"
 end)
 -- Enable break indent
 vim.o.breakindent = true
@@ -59,7 +59,7 @@ vim.bo.softtabstop = 2
 
 vim.opt.pumblend = 0 -- for cmp menu
 vim.opt.winblend = 0 -- for documentation popup
-vim.o.winborder = 'rounded'
+vim.o.winborder = "rounded"
 
 vim.g.loaded_node_provider = 0
 vim.g.loaded_perl_provider = 0

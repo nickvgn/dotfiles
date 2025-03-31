@@ -3,7 +3,7 @@ return {
     "justinmk/vim-dirvish",
     cmd = { "Dirvish" },
     config = function()
-      vim.g.dirvish_mode = ':sort ,^.*[\\/],'
+      vim.g.dirvish_mode = ":sort ,^.*[/], | silent keeppatterns g/\\.DS_Store$/d _"
     end
   },
   {

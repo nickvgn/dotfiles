@@ -48,7 +48,7 @@ vim.keymap.set("n", "[d", jump_back, { desc = "Go to previous diagnostic message
 vim.keymap.set("n", "]d", jump_forward, { desc = "Go to next diagnostic message" })
 
 vim.diagnostic.config({
-  virtual_lines = {
+  virtual_text = {
     source           = 'if_many',
     current_line     = true,
     severity_sort    = true,
@@ -59,15 +59,13 @@ vim.diagnostic.config({
     border = "rounded",
     scope  = "cursor"
   },
-  underline = { severity = vim.diagnostic.severity.ERROR },
-  signs = vim.g.have_nerd_font and {
-    text = {
-      [vim.diagnostic.severity.ERROR] = '󰅚 ',
-      [vim.diagnostic.severity.WARN] = '󰀪 ',
-      [vim.diagnostic.severity.INFO] = '󰋽 ',
-      [vim.diagnostic.severity.HINT] = '󰌶 ',
+  underline = {
+    severity = {
+      min = vim.diagnostic.severity.INFO,
+      max = vim.diagnostic.severity.ERROR,
     },
-  } or {},
+  },
+  signs = false
 })
 
 vim.g.rustaceanvim = {

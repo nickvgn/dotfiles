@@ -8,6 +8,11 @@ return {
       require("gruvbox").setup({
         transparent_mode = true,
         contrast = "hard",
+        overrides = {
+          StatusLine = { fg = "#a89984", bg = "#282828" },
+          StatusLineNC = { fg = "#a89984", bg = "#282828" },
+          ColorColumn = { bg = "#282828" },
+        }
       })
       vim.cmd("colorscheme gruvbox")
     end,

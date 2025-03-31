@@ -1,8 +1,10 @@
 return {
-  -- Detect tabstop and shiftwidth automatically
   {
-    "tpope/vim-sleuth",
-    lazy = true,
+    "justinmk/vim-dirvish",
+    cmd = { "Dirvish" },
+    config = function()
+      vim.g.dirvish_mode = ':sort ,^.*[\\/],'
+    end
   },
   {
     "folke/ts-comments.nvim",

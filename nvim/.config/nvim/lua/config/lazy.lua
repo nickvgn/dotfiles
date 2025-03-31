@@ -70,6 +70,7 @@ require("lazy").setup({
 				"osc52",
 				"rplugin",
 				"editorconfig",
+				"netrwPlugin"
 			},
 		},
 	},

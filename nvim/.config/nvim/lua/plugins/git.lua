@@ -18,14 +18,14 @@ return {
     event = "VeryLazy",
     opts = {
       -- See `:help gitsigns.txt`
-      signs = {
+      signs                   = {
         add = { text = "+" },
         change = { text = "~" },
         delete = { text = "_" },
         topdelete = { text = "‾" },
         changedelete = { text = "~" },
       },
-      current_line_blame = true, -- Toggle with `:Gitsigns toggle_current_line_blame`
+      current_line_blame      = true, -- Toggle with `:Gitsigns toggle_current_line_blame`
       current_line_blame_opts = {
         virt_text = true,
         virt_text_pos = "eol", -- 'eol' | 'overlay' | 'right_align'
@@ -89,6 +89,13 @@ return {
           map("n", "<leader>td", gs.toggle_deleted)
           -- Text object
           map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>")
+
+          require('gitsigns').setup({
+            signcolumn = false, -- Toggle with `:Gitsigns toggle_signs`
+            numhl      = true,  -- Toggle with `:Gitsigns toggle_numhl`
+            linehl     = false, -- Toggle with `:Gitsigns toggle_linehl`
+            word_diff  = false, -- Toggle with `:Gitsigns toggle_word_diff`
+          })
         end,
       })
     end,

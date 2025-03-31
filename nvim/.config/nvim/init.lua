@@ -44,7 +44,7 @@ vim.o.undofile = true
 vim.o.ignorecase = true
 vim.o.smartcase = true
 -- Keep signcolumn on by default
-vim.wo.signcolumn = "yes"
+vim.wo.signcolumn = "no"
 vim.wo.colorcolumn = "100"
 -- Decrease update time
 vim.o.updatetime = 250
@@ -64,6 +64,8 @@ vim.opt.cursorline = true
 vim.opt.swapfile = false
 -- turn off neovim intro
 -- vim.o.shortmess = vim.o.shortmess .. "I"
+
+vim.o.splitright = true
 
 vim.o.termsync = false
 
@@ -104,10 +106,7 @@ vim.keymap.set("n", "<Leader>w", "<cmd>w<CR>", { noremap = true })
 vim.keymap.set("n", "<Leader>wq", "<cmd>wq<CR>", { noremap = true })
 vim.keymap.set("n", "<Leader>x", "<cmd>q<CR>", { noremap = true })
 
-vim.keymap.set("n", "<space>ft", ":Explore<cr>", { noremap = true, desc = "[F]ile [T]ree" })
-
--- Hide .DS_Store files in Netrw
-vim.g.netrw_list_hide = ".*.DS_Store"
+vim.keymap.set("n", "<space>ft", ":Dirvish<cr>", { noremap = true, desc = "[F]ile [T]ree", silent = true })
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`

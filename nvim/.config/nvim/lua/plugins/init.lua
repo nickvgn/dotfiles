@@ -1,5 +1,11 @@
 return {
 	{
+		"m4xshen/hardtime.nvim",
+		event = "VeryLazy",
+		dependencies = { "MunifTanjim/nui.nvim" },
+		opts = {},
+	},
+	{
 		"justinmk/vim-dirvish",
 		cmd = { "Dirvish" },
 		config = function()
@@ -30,7 +36,7 @@ return {
 
 			-- REQUIRED
 			harpoon:setup({
-				global_settings = {
+				settings = {
 					save_on_toggle = true,
 				},
 			})

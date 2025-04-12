@@ -6,6 +6,7 @@ return {
 			"<leader>sb",
 			"<leader>of",
 			"<leader>sg",
+			"<leader>sr",
 			"<leader>sd",
 			"<leader>gb",
 		},
@@ -42,6 +43,9 @@ return {
 			vim.keymap.set("n", "<leader>sb", require("fzf-lua").buffers, { desc = "[S]earch [B]uffers" })
 			vim.keymap.set("n", "<leader>of", require("fzf-lua").oldfiles, { desc = "Search [O]ld [F]iles" })
 			vim.keymap.set("n", "<leader>sg", require("fzf-lua").live_grep_native, { desc = "[S]earch by [G]rep" })
+			vim.keymap.set("n", "<leader>sr", function()
+				require("fzf-lua").live_grep_native({ resume = true })
+			end, { desc = "[S]earch by [G]rep" })
 			vim.keymap.set(
 				"n",
 				"<leader>sd",

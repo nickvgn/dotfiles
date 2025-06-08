@@ -1,17 +1,24 @@
 return {
+	-- {
+	-- 	"m4xshen/hardtime.nvim",
+	-- 	event = "VeryLazy",
+	-- 	dependencies = { "MunifTanjim/nui.nvim" },
+	-- 	opts = {},
+	-- },
 	{
-		"m4xshen/hardtime.nvim",
-		event = "VeryLazy",
-		dependencies = { "MunifTanjim/nui.nvim" },
+		"stevearc/oil.nvim",
+		---@module 'oil'
+		---@type oil.SetupOpts
+		cmd = { "Oil" },
 		opts = {},
 	},
-	{
-		"justinmk/vim-dirvish",
-		cmd = { "Dirvish" },
-		config = function()
-			vim.g.dirvish_mode = ":sort ,^.*[/], | silent keeppatterns g/\\.DS_Store$/d _"
-		end,
-	},
+	-- {
+	-- 	"justinmk/vim-dirvish",
+	-- 	cmd = { "Dirvish" },
+	-- 	config = function()
+	-- 		vim.g.dirvish_mode = ":sort ,^.*[/], | silent keeppatterns g/\\.DS_Store$/d _"
+	-- 	end,
+	-- },
 	{
 		"folke/ts-comments.nvim",
 		event = "VeryLazy",
@@ -99,5 +106,5 @@ return {
 				disable_filename = 1,
 			}
 		end,
-	},
+	}
 }

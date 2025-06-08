@@ -1,5 +1,8 @@
 vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 
+-- vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Half page up" })
+-- vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Half page down" })
+
 -- for switching between terminal and vim splits
 vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]], { noremap = true, silent = true })
 vim.keymap.set("n", "<Tab>", [[<C-w><C-w>]], { noremap = true, silent = true })
@@ -13,7 +16,7 @@ vim.keymap.set("n", "<Leader>w", "<cmd>w<CR>", { noremap = true })
 vim.keymap.set("n", "<Leader>wq", "<cmd>wq<CR>", { noremap = true })
 vim.keymap.set("n", "<Leader>x", "<cmd>q<CR>", { noremap = true })
 
-vim.keymap.set("n", "<space>ft", ":Dirvish<cr>", { noremap = true, desc = "[F]ile [T]ree", silent = true })
+vim.keymap.set("n", "<space>ft", "<cmd>Oil<CR>", { noremap = true, desc = "[F]ile [T]ree", silent = true })
 
 local function remove_quickfix_item()
 	local qf_list = vim.fn.getqflist()

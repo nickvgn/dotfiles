@@ -185,12 +185,12 @@
 										"value": 1
 									}
 								],
-								"description": "Open Obsidian",
+								"description": "Open Cursor",
 								"from": {
 									"key_code": "semicolon",
 									"modifiers": { "optional": ["any"] }
 								},
-								"to": [{ "shell_command": "open -a 'Obsidian.app'" }],
+								"to": [{ "shell_command": "open -a 'Cursor.app'" }],
 								"type": "basic"
 							},
 							{
@@ -207,6 +207,22 @@
 									"modifiers": { "optional": ["any"] }
 								},
 								"to": [{ "shell_command": "open -a 'Music.app'" }],
+								"type": "basic"
+							},
+							{
+								"conditions": [
+									{
+										"name": "hyper_sublayer_e",
+										"type": "variable_if",
+										"value": 1
+									}
+								],
+								"description": "Open Finder",
+								"from": {
+									"key_code": "f",
+									"modifiers": { "optional": ["any"] }
+								},
+								"to": [{ "shell_command": "open -a 'Finder.app'" }],
 								"type": "basic"
 							}
 						]
@@ -260,7 +276,7 @@
 								],
 								"description": "Window left (ctrl+fn+left arrow)",
 								"from": {
-									"key_code": "h",
+									"key_code": "j",
 									"modifiers": { "optional": ["any"] }
 								},
 								"to": [
@@ -281,7 +297,7 @@
 								],
 								"description": "Window down (ctrl+fn+down arrow)",
 								"from": {
-									"key_code": "j",
+									"key_code": "k",
 									"modifiers": { "optional": ["any"] }
 								},
 								"to": [
@@ -302,7 +318,7 @@
 								],
 								"description": "Window up (ctrl+fn+up arrow)",
 								"from": {
-									"key_code": "k",
+									"key_code": "i",
 									"modifiers": { "optional": ["any"] }
 								},
 								"to": [

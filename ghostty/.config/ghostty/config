@@ -42,22 +42,26 @@ window-width = 150
 
 resize-overlay = never
 
+quick-terminal-position = center
+quick-terminal-animation-duration = 0.05
+quick-terminal-screen = main
+quick-terminal-space-behavior = move
+
+
 confirm-close-surface = false
 
-keybind = super+ctrl+h=resize_split:right,100
-keybind = super+ctrl+j=resize_split:down,100
-keybind = super+ctrl+k=resize_split:up,100
-keybind = super+ctrl+l=resize_split:left,100
+keybind = global:ctrl+grave_accent=toggle_quick_terminal
 
-keybind = ctrl+h=goto_split:left
-keybind = ctrl+j=goto_split:bottom
-keybind = ctrl+k=goto_split:top
-keybind = ctrl+l=goto_split:right
+keybind = alt+ctrl+i=resize_split:right,100
+keybind = alt+ctrl+e=resize_split:down,100
+keybind = alt+ctrl+u=resize_split:up,100
+keybind = alt+ctrl+n=resize_split:left,100
 
-keybind = ctrl+a>h=new_split:left
-keybind = ctrl+a>j=new_split:down
-keybind = ctrl+a>k=new_split:up
-keybind = ctrl+a>l=new_split:right
+keybind = super+ctrl+n=goto_split:left
+keybind = super+ctrl+e=goto_split:bottom
+keybind = super+ctrl+u=goto_split:top
+keybind = super+ctrl+i=goto_split:right
+
 keybind = ctrl+enter=toggle_split_zoom
 
 keybind = super+r=reload_config

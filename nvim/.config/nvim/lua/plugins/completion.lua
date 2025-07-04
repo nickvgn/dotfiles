@@ -1,5 +1,12 @@
 return {
 	{
+		"supermaven-inc/supermaven-nvim",
+		event = "VeryLazy",
+		config = function()
+			require("supermaven-nvim").setup({})
+		end,
+	},
+	{
 		"saghen/blink.cmp",
 		event = "InsertEnter",
 		-- optional: provides snippets for the snippet source
@@ -49,15 +56,15 @@ return {
 
 			completion = {
 				menu = {
-					auto_show = false,
+					auto_show = true,
 					winhighlight = "BlinkCmpMenu:None",
 					draw = {
 						treesitter = { "lsp" },
 					},
 				},
 				ghost_text = {
-					enabled = true,
-					show_with_menu = false,
+					enabled = false,
+					show_with_menu = true,
 				},
 			},
 

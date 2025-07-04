@@ -1,0 +1,215 @@
+123456789 987654321 1234567890 0987654321
+11 22 33 44 55 66 77 88 99 00
+101 202 303 404 505 606 707 808 909
+1.0 2.5 3.14 4.20 5.67 6.89 7.32 8.45 9.99
+0.001 0.999 1.234 5.678 9.012 3.456 7.890
+42 365 1024 2048 4096 8192 16384 32768
+1e6 2e-3 1.5e10 3.14e-7 9.99e12 4.2e-15
+
+() [] {} <> "" '' `` ~~ !! @@ ## $$ %% ^^ && ** __ ++ == -- || \\ // ?? ::
+!= == === !== <= >= -> => :: ... && || ?? !! @@ ## $$ %% ^^ && ** __ ++ -- || \\ //
+&&= ||= ??= += -= *= /= %= ^= &= |= <<= >>=
+!== === !== <= >= <=> -> => :: ... ?. !. 
+#{} ${} @{} %{} ^{} &{} *{} _{}
+[1, 2, 3] {a: 1, b: 2} <T, U, V> (x, y, z)
+|> <| <-> <=> =>> <<< >>> ~~~ ::: ;;;
+
+const user: User = { id: 1, name: "Alice", age: 25 };
+interface User { id: number; name: string; age?: number; }
+const users: User[] = [{ id: 1, name: "Alice", age: 25 }];
+type ApiResponse<T> = { data: T; status: number; error?: string; };
+const fetchUser = async (id: number): Promise<User | null> => {};
+return await fetch(`/api/users/${id}`).then(res => res.json());
+function updateUser(user: Partial<User>): User { return user; }
+const isValid = (data: unknown): data is User => true;
+let result: string | number = Math.random() > 0.5 ? "text" : 42;
+const config = { timeout: 5000, retries: 3, debug: false };
+export default class UserService extends BaseService<User> {}
+
+defmodule UserService do
+@spec get_user(integer()) :: {:ok, User.t()} | {:error, :not_found}
+def get_user(id) when is_integer(id) and id > 0 do
+case Repo.get(User, id) do
+%User{} = user -> {:ok, user}
+nil -> {:error, :not_found}
+end
+end
+def create_user(%{name: name, age: age}) when is_binary(name) do
+%User{name: name, age: age} |> Repo.insert()
+{:ok, user} -> {:ok, user}
+{:error, changeset} -> {:error, changeset}
+users = [%{id: 1, name: "Alice"}, %{id: 2, name: "Bob"}]
+Enum.map(users, &(&1.name))
+Stream.filter(1..100, &(rem(&1, 2) == 0)) |> Enum.take(10)
+GenServer.call(pid, {:update, %{id: 1, data: "new_value"}})
+spawn(fn -> IO.puts("Hello from #{inspect(self())}") end)
+
+struct User { id: u32, name: String, email: Option<String> }
+impl User {
+fn new(id: u32, name: &str) -> Self {
+Self { id, name: name.to_string(), email: None }
+}
+}
+fn find_user(users: &[User], id: u32) -> Option<&User> {
+users.iter().find(|user| user.id == id)
+}
+let mut users: Vec<User> = Vec::new();
+users.push(User::new(1, "Alice"));
+match find_user(&users, 1) {
+Some(user) => println!("Found: {}", user.name),
+None => println!("User not found"),
+}
+let numbers: Vec<i32> = (1..=10).collect();
+let evens: Vec<i32> = numbers.into_iter().filter(|&x| x % 2 == 0).collect();
+let result: Result<String, Box<dyn std::error::Error>> = Ok("success".to_string());
+
+type User struct {
+ID    int    `json:"id"`
+Name  string `json:"name"`
+Email string `json:"email,omitempty"`
+}
+func (u *User) String() string {
+return fmt.Sprintf("User{ID: %d, Name: %s}", u.ID, u.Name)
+}
+func findUser(users []User, id int) (*User, error) {
+for _, user := range users {
+if user.ID == id {
+return &user, nil
+}
+}
+return nil, fmt.Errorf("user with id %d not found", id)
+}
+users := []User{{ID: 1, Name: "Alice"}, {ID: 2, Name: "Bob"}}
+if user, err := findUser(users, 1); err != nil {
+log.Printf("Error: %v", err)
+} else {
+fmt.Printf("Found: %+v\n", user)
+}
+
+const result = users?.filter(u => u.age >= 18)?.map(u => ({ ...u, adult: true })) ?? [];
+defp calculate_score(%{points: p, multiplier: m}) when p > 0, do: p * m
+let total: i32 = items.iter().map(|item| item.price * item.quantity).sum();
+score := (base * multiplier) + bonus - penalty
+array.push(...items.filter(item => item.active && item.priority > 3));
+pipeline = data |> transform() |> validate() |> save()
+chain := NewProcessor().WithTimeout(30*time.Second).WithRetries(3)
+
+https://api.example.com/v1/users/123?include=profile&sort=name
+/api/v2/users/{id}/posts?page=1&limit=10&sort=-created_at
+localhost:3000/graphql?query={user(id:1){name,email}}
+ws://localhost:4000/socket/websocket?token=abc123&channel=user:456
+https://cdn.jsdelivr.net/npm/package@1.2.3/dist/bundle.min.js
+ftp://files.example.com:21/uploads/2023/data.csv
+mongodb://username:password@cluster.mongodb.net:27017/database
+
+try { await api.call(); } catch (e) { console.error(e); }
+{:ok, result} = Service.call(params) || {:error, :invalid_params}
+match result { Ok(data) => data, Err(e) => return Err(e) }
+if err := service.Call(); err != nil { return fmt.Errorf("failed: %w", err) }
+panic!("Critical error: {}", error_msg);
+throw new Error(`Validation failed: ${field} is required`);
+
+x = 42; y = 3.14159; z = 1e-6; w = 0xFF; hex = 0xDEADBEEF;
+count += 1; total *= 0.95; ratio /= 100; remainder %= 7;
+binary = 0b10101010; octal = 0o755; scientific = 6.022e23;
+negative = -273.15; fraction = 22/7; percentage = 85.6%;
+milliseconds = Date.now(); timestamp = 1672531200000;
+
+SELECT * FROM users WHERE age > 21 AND status = 'active';
+INSERT INTO posts (title, content, user_id) VALUES ($1, $2, $3);
+UPDATE accounts SET balance = balance - $1 WHERE id = $2;
+DELETE FROM sessions WHERE expires_at < NOW();
+CREATE INDEX idx_users_email ON users(email);
+ALTER TABLE products ADD COLUMN price DECIMAL(10,2);
+
+docker run -p 3000:3000 -e NODE_ENV=production myapp:latest
+kubectl apply -f deployment.yaml --namespace=production
+npm install --save-dev @types/node typescript ts-node
+cargo build --release --target x86_64-unknown-linux-gnu
+go mod init github.com/username/project && go mod tidy
+mix deps.get && mix compile && mix test --cover
+
+process.env.DATABASE_URL || "postgresql://localhost:5432/mydb"
+System.get_env("PORT", "4000") |> String.to_integer()
+std::env::var("RUST_LOG").unwrap_or_else(|_| "info".to_string())
+os.Getenv("API_KEY")
+
+{"name": "john", "age": 30, "skills": ["js", "rust", "go"]}
+%{"user_id" => 123, "action" => "login", "timestamp" => DateTime.utc_now()}
+HashMap::from([("key1", "value1"), ("key2", "value2")])
+map[string]interface{}{"status": "ok", "data": results}
+
+console.log(`User ${user.name} has ${user.posts.length} posts`);
+Logger.info("Processing user_id=#{user_id} batch_size=#{length(items)}")
+println!("Processed {} items in {:?}", count, duration);
+log.Printf("Request completed: method=%s path=%s duration=%v", method, path, elapsed)
+
+/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$/
+~r/\\d{4}-\\d{2}-\\d{2}/
+r"\\b\\w+@\\w+\\.\\w+\\b"
+`\\$\\{[^}]+\\}`
+
+hjkl HJKL 0$ ^g_ gg G 1G 999G
+dd yy cc pp PP o O A I a i
+dw db dW dB cw cb cW cB yw yb yW yB
+d$ y$ c$ d^ y^ c^ d0 y0 c0
+dt" df" ct" cf" yt" yf" dT" dF" cT" cF" yT" yF"
+di" da" ci" ca" yi" ya" di' da' ci' ca' yi' ya'
+di( da( ci( ca( yi( ya( di) da) ci) ca) yi) ya)
+di[ da[ ci[ ca[ yi[ ya[ di] da] ci] ca] yi] ya]
+di{ da{ ci{ ca{ yi{ ya{ di} da} ci} ca} yi} ya}
+dit dat cit cat yit yat diw daw ciw caw yiw yaw
+dip dap cip cap yip yap dis das cis cas yis yas
+/search ?search n N * # gd gD
+f; F, t; T, ; , % ( ) { } [[ ]]
+w b e ge W B E gE
+<C-f> <C-b> <C-d> <C-u> <C-e> <C-y>
+zz zt zb z. z<CR> zH zL zs ze
+m' m. ma mb mc md me mf mg mh mi mj mk ml mm mn mo mp
+'a 'b 'c 'd 'e 'f 'g 'h 'i 'j 'k 'l 'm 'n 'o 'p
+`a `b `c `d `e `f `g `h `i `j `k `l `m `n `o `p
+qa qb qc qd qe qf qg qh qi qj qk ql qm qn qo qp
+@a @b @c @d @e @f @g @h @i @j @k @l @m @n @o @p
+:w :q :wq :q! :x ZZ ZQ :e :r :sp :vsp :new :vnew
+:set nu :set nonu :set rnu :set nornu :set ic :set noic
+:%s/old/new/g :%s/old/new/gc :s/old/new/g
+:1,10s/old/new/g :/pattern/,/pattern/s/old/new/g
+:tabnew :tabclose :tabnext :tabprev gt gT 1gt 2gt 3gt
+
+git add . && git commit -m "feat: add user authentication"
+git checkout -b feature/new-endpoint && git push origin feature/new-endpoint
+git merge --no-ff develop && git tag v1.2.3 && git push --tags
+git rebase -i HEAD~3 && git push --force-with-lease
+
+[dependencies]
+serde = { version = "1.0", features = ["derive"] }
+tokio = { version = "1.0", features = ["full"] }
+"dependencies": { "@types/node": "^20.0.0", "typescript": "^5.0.0" }
+{:jason, "~> 1.4"}, {:plug_cowboy, "~> 2.6"}
+
+<div className="flex items-center justify-between p-4 bg-gray-100">
+<span className={`badge ${isActive ? 'badge-success' : 'badge-default'}`}>
+<input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+<button onClick={() => handleSubmit()} disabled={loading}>Submit</button>
+
+tests/unit/user_service_test.exs
+src/components/UserProfile.tsx
+internal/handlers/auth_handler.go
+pkg/database/migrations/001_create_users.sql
+
+await Promise.all([fetchUsers(), fetchPosts(), fetchComments()]);
+Task.async_stream(urls, &HTTPoison.get/1, max_concurrency: 10)
+futures::future::join_all(tasks).await;
+var wg sync.WaitGroup; wg.Add(len(tasks)); wg.Wait()
+
+useState<User[]>([]) useEffect(() => {}, [dependency])
+use GenServer, restart: :permanent, shutdown: 5000
+#[derive(Debug, Clone, Serialize, Deserialize)]
+func NewServer() *Server { return &Server{} }
+
+~~~ !!! @@@ ### $$$ %%% ^^^ &&& *** ((( ))) [[[
+]]] {{{ }}} <<< >>> """ ''' ``` ||| \\\ /// ???
++=+ -=+ *=* /=/ %=% ^=^ &=& |=| <=< >=+ !=+ ==+
+:=: ;=; ,=, .=. @=@ #=# $=$ %=% ^=^ &=& *=* (=(
+123!@# 456$%^ 789&*( 0)-+= qwe{}| asd[]\ zxc<>?
+!1@2#3$4%5^6&7*8(9)0_+-= QWERTY{|} asdfgh[\\] zxcvbn<>?

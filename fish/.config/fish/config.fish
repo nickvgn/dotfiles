@@ -33,13 +33,14 @@ alias ll="eza -la"
 # cd
 alias ..="cd ../"
 alias ...="cd ../../"
-# nvim
-alias vi="nvim"
 # git
 alias glog="git log --all --pretty='format:%d %Cgreen%h%Creset %an - %s' --graph"
 # gnu
 alias xargs="gxargs"
 alias find="gfind"
+
+# ttyper
+alias ttyperc='ttyper -w 5 --language-file $HOME/.config/ttyper/language/codesym'
 
 # naluri db script
 alias aws="sh ~/dev/naluri/ops-utility-script/scripts/configure_aws.sh"

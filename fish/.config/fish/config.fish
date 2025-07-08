@@ -2,8 +2,7 @@
 if test -n "$GHOSTTY_RESOURCES_DIR"
     source $GHOSTTY_RESOURCES_DIR/shell-integration/fish/vendor_conf.d/ghostty-shell-integration.fish
 end
-# if status is-interactive
-# end
+
 set -g theme_powerline_fonts yes
 set -g theme_nerd_fonts yes
 
@@ -45,14 +44,8 @@ alias ttyperc='ttyper -w 5 --language-file $HOME/.config/ttyper/language/codesym
 # naluri db script
 alias aws="sh ~/dev/naluri/ops-utility-script/scripts/configure_aws.sh"
 
-# https://github.com/MordechaiHadad/bob
- set PATH "$HOME/.local/share/bob/nvim-bin" $PATH;
-
 # https://crates.io/crates/starship
 starship init fish | source
-
-# https://github.com/jdx/rtx
-~/.cargo/bin/mise activate fish | source
 
 # bun
 set --export BUN_INSTALL "$HOME/.bun"
@@ -62,10 +55,9 @@ set --export BAT_THEME "gruvbox-dark"
 
 set --export FZF_DEFAULT_OPTS "--color=bg+:#3c3836,spinner:#fe8019,hl:#fe8019,fg:#ebdbb2,header:#928374,info:#8ec07c,pointer:#fe8019,marker:#fe8019,fg+:#ebdbb2,prompt:#fe8019,hl+:#fe8019"
 
-# Set up fzf key bindings
 fzf --fish | source
-
 zoxide init fish | source
+mise activate fish | source
 
 # launch interactive shell in ~/dev dir
 #if status is-interactive

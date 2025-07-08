@@ -24,6 +24,17 @@ set -gx PATH $HOME/go/bin $PATH;
 set -gx PATH /opt/homebrew/opt/postgresql@17/bin $PATH
 # protoc
 set -x PROTOC /opt/homebrew/bin/protoc
+# bun
+set --export BUN_INSTALL "$HOME/.bun"
+set --export PATH $BUN_INSTALL/bin $PATH
+set --export BAT_THEME "gruvbox-dark"
+set --export FZF_DEFAULT_OPTS "--color=bg+:#3c3836,spinner:#fe8019,hl:#fe8019,fg:#ebdbb2,header:#928374,info:#8ec07c,pointer:#fe8019,marker:#fe8019,fg+:#ebdbb2,prompt:#fe8019,hl+:#fe8019"
+
+
+fzf --fish | source
+zoxide init fish | source
+starship init fish | source
+mise activate fish | source
 
 # ALIAS
 # exa
@@ -37,27 +48,10 @@ alias glog="git log --all --pretty='format:%d %Cgreen%h%Creset %an - %s' --graph
 # gnu
 alias xargs="gxargs"
 alias find="gfind"
-
 # ttyper
 alias ttyperc='ttyper -w 5 --language-file $HOME/.config/ttyper/language/codesym'
-
-# naluri db script
+# naluri db script TODO: DELETE!
 alias aws="sh ~/dev/naluri/ops-utility-script/scripts/configure_aws.sh"
-
-# https://crates.io/crates/starship
-starship init fish | source
-
-# bun
-set --export BUN_INSTALL "$HOME/.bun"
-set --export PATH $BUN_INSTALL/bin $PATH
-
-set --export BAT_THEME "gruvbox-dark"
-
-set --export FZF_DEFAULT_OPTS "--color=bg+:#3c3836,spinner:#fe8019,hl:#fe8019,fg:#ebdbb2,header:#928374,info:#8ec07c,pointer:#fe8019,marker:#fe8019,fg+:#ebdbb2,prompt:#fe8019,hl+:#fe8019"
-
-fzf --fish | source
-zoxide init fish | source
-mise activate fish | source
 
 # launch interactive shell in ~/dev dir
 #if status is-interactive

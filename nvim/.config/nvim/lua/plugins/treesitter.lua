@@ -18,7 +18,17 @@ return {
 
 			require("nvim-treesitter.configs").setup({
 				-- add languages to be installed here that you want installed for treesitter
-				ensure_installed = { "cpp", "lua", "rust", "tsx", "typescript", "vim", "elixir" },
+				ensure_installed = {
+					"markdown",
+					"markdown_inline",
+					"cpp",
+					"lua",
+					"rust",
+					"tsx",
+					"typescript",
+					"vim",
+					"elixir",
+				},
 				auto_install = false,
 				highlight = { enable = true },
 				indent = { enable = true },
